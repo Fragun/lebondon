@@ -11,8 +11,10 @@ class ConnexionController extends AbstractController
     #[Route('/connexion', name: 'app_connexion')]
     public function index(): Response
     {
-        return $this->render('connexion/index.html.twig', [
+        return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'ConnexionController',
         ]);
     }
+
+    
 }
