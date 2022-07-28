@@ -30,16 +30,6 @@ class Conversation
     private $date;
 
     /**
-     * @var \Annonce
-     *
-     * @ORM\ManyToOne(targetEntity="Annonce")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_ANNONCE", referencedColumnName="ID_ANNONCE")
-     * })
-     */
-    private $idAnnonce;
-
-    /**
      * @var \Utilisateur
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
@@ -48,6 +38,16 @@ class Conversation
      * })
      */
     private $idUtilisateur;
+
+    /**
+     * @var \Annonce
+     *
+     * @ORM\ManyToOne(targetEntity="Annonce")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_ANNONCE", referencedColumnName="ID_ANNONCE")
+     * })
+     */
+    private $idAnnonce;
 
     public function getIdConversation(): ?int
     {
@@ -66,18 +66,6 @@ class Conversation
         return $this;
     }
 
-    public function getIdAnnonce(): ?Annonce
-    {
-        return $this->idAnnonce;
-    }
-
-    public function setIdAnnonce(?Annonce $idAnnonce): self
-    {
-        $this->idAnnonce = $idAnnonce;
-
-        return $this;
-    }
-
     public function getIdUtilisateur(): ?Utilisateur
     {
         return $this->idUtilisateur;
@@ -86,6 +74,18 @@ class Conversation
     public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
     {
         $this->idUtilisateur = $idUtilisateur;
+
+        return $this;
+    }
+
+    public function getIdAnnonce(): ?Annonce
+    {
+        return $this->idAnnonce;
+    }
+
+    public function setIdAnnonce(?Annonce $idAnnonce): self
+    {
+        $this->idAnnonce = $idAnnonce;
 
         return $this;
     }

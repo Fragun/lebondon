@@ -6,6 +6,7 @@
 			<!-- ======================= Login Detail ======================== -->
 			<section class="gray">
 				<div class="container">
+				<form method="post" action="{{path('app_connexion') }}">
 					<div class="row align-items-start justify-content-center">
 						<div class="col-xl-5 col-lg-8 col-md-12">
 							
@@ -15,15 +16,15 @@
 										<h4 class="m-0 ft-medium">Connectez-vous</h4>
 									</div>
 									
-									<form class="submit-form">				
+											
 										<div class="form-group">
 											<label class="mb-1">Pseudo</label>
-											<input type="text" class="form-control rounded" placeholder="Saisissez votre pseudo">
+											<input type="text" class="form-control rounded" name="_username" id="floatingInput" placeholder="Saisissez votre pseudo">
 										</div>
 										
 										<div class="form-group">
 											<label class="mb-1">Mot de passe</label>
-											<input type="password" class="form-control rounded" placeholder="Saisissez votre mot de passe">
+											<input type="password" class="form-control rounded" name="_password" id="floatingPassword" placeholder="Saisissez votre mot de passe">
 										</div>
 										
 										<div class="form-group">
@@ -39,6 +40,8 @@
 										</div>
 										
 										<div class="form-group">
+											<input type="hidden" name="_target_path" value="{{path('app_dashboard')}}" />
+											<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
 											<button type="submit" class="btn btn-md full-width theme-bg text-light rounded ft-medium">Connecter</button>
 										</div>
 										
@@ -60,6 +63,7 @@
 							
 						</div>
 					</div>
+					</form>
 				</div>
 			</section>
 			<!-- ======================= Login End ======================== -->

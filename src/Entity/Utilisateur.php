@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherAwareInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * Utilisateur
@@ -11,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass= "App\Repository\UtilisateurRepository")
  */
-class Utilisateur
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, PasswordHasherAwareInterface
 {
     /**
      * @var int
@@ -70,6 +73,20 @@ class Utilisateur
      * @ORM\Column(name="MDP_UTILISATEUR", type="string", length=50, nullable=false)
      */
     private $mdpUtilisateur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="MAIL_UTILISATEUR", type="string", length=50, nullable=false)
+     */
+    private $mailUtilisateur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ROLE_UTILISATEUR", type="string", length=50, nullable=false)
+     */
+    private $roleUtilisateur;
 
     public function getIdUtilisateur(): ?int
     {
@@ -159,6 +176,74 @@ class Utilisateur
 
         return $this;
     }
+
+    public function getMailUtilisateur(): ?string
+    {
+        return $this->mailUtilisateur;
+    }
+
+    public function setMailUtilisateur(string $mailUtilisateur): self
+    {
+        $this->mailUtilisateur = $mailUtilisateur;
+
+        return $this;
+    }
+
+    public function getRoleUtilisateur(): ?string
+    {
+        return $this->roleUtilisateur;
+    }
+
+    public function setRoleUtilisateur(string $roleUtilisateur): self
+    {
+        $this->roleUtilisateur = $roleUtilisateur;
+
+        return $this;
+    }
+
+    /* The public representation of the user (e.g. a username, an email address, etc.)
+    *
+    * @see UserInterface
+    */
+   public function getUserIdentifier(): string
+   {
+       return (string) $this->mailUtilisateur;
+   }
+
+   /* @see UserInterface
+    */
+   public function getRoles(): array
+   {
+       $roles[] = $this->roleUtilisateur;
+       return array_unique($roles);
+   }
+
+   /*
+    * @see UserInterface
+    */
+   public function getSalt(): ?string
+   {
+       return null;
+   }
+
+   /* @see UserInterface
+    */
+   public function eraseCredentials()
+   {
+   }
+
+   /**
+    * @see PasswordAuthenticatedUserInterface
+    */
+   public function getPassword(): string
+   {
+       return $this->mdpUtilisateur;
+   }
+
+   public function getPasswordHasherName(): ?string
+   {
+       return null;
+   }
 
 
 }
