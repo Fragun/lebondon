@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\SousCategorie;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Annonce
@@ -29,6 +32,13 @@ class Annonce
      */
     private $titreAnnonce;
 
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="slug_a", type="string", length=150, nullable=false)
+     */
+    private $slugAnnonce;
+
     /**
      * @var string
      *
@@ -51,12 +61,9 @@ class Annonce
     private $dateCreationAnnonce;
 
     /**
-     * @var \SousCategorie
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToOne(targetEntity="SousCategorie")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
-     * })
+     * @ORM\ManyToMany(targetEntity="SousCategorie", mappedBy="idAnnonce")
      */
     private $idSousCategorie;
 
@@ -89,6 +96,14 @@ class Annonce
      * })
      */
     private $idUtilisateur;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idSousCategorie = new ArrayCollection();
+    }
 
     public function getIdAnnonce(): ?int
     {
@@ -143,18 +158,6 @@ class Annonce
         return $this;
     }
 
-    public function getIdSousCategorie(): ?SousCategorie
-    {
-        return $this->idSousCategorie;
-    }
-
-    public function setIdSousCategorie(?SousCategorie $idSousCategorie): self
-    {
-        $this->idSousCategorie = $idSousCategorie;
-
-        return $this;
-    }
-
     public function getIdVille(): ?Ville
     {
         return $this->idVille;
@@ -191,5 +194,31 @@ class Annonce
         return $this;
     }
 
+     /**
+     * @return Collection<int, Categorie>
+     */
+    public function getIdSousCategorie(): Collection
+    {
+        return $this->idSousCategorie;
+    }
+
+    public function addIdCategorie(SousCategorie $idSousCategorie): self
+    {
+        if (!$this->idSousCategorie->contains($idSousCategorie)) {
+            $this->idSousCategorie[] = $idSousCategorie;
+            $idSousCategorie->addIdAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdSsousCategorie(SousCategorie $idSousCategorie): self
+    {
+        if ($this->idSousCategorie->removeElement($idSousCategorie)) {
+            $idSousCategorie->removeIdAnnonce($this);
+        }
+
+        return $this;
+    }
 
 }
