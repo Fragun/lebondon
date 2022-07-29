@@ -3,11 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-
-        'reference' => '5e027784ad12b41b44ff78eec06306e9e9ad085e',
-
-        'reference' => '6f7b9039ad8de437c1fe13d28edac07a64c571be',
-
+        'reference' => '8420b8d96080d6c179a4f94b5202351638016b9f',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -17,11 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-
-            'reference' => '5e027784ad12b41b44ff78eec06306e9e9ad085e',
-
-            'reference' => '6f7b9039ad8de437c1fe13d28edac07a64c571be',
-
+            'reference' => '8420b8d96080d6c179a4f94b5202351638016b9f',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -109,9 +101,9 @@
             'dev_requirement' => false,
         ),
         'doctrine/event-manager' => array(
-            'pretty_version' => '1.1.1',
-            'version' => '1.1.1.0',
-            'reference' => '41370af6a30faa9dc0368c4a6814d596e81aba7f',
+            'pretty_version' => '1.1.2',
+            'version' => '1.1.2.0',
+            'reference' => 'eb2ecf80e3093e8f3c2769ac838e27d8ede8e683',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/event-manager',
             'aliases' => array(),
@@ -208,9 +200,9 @@
             'dev_requirement' => false,
         ),
         'laminas/laminas-code' => array(
-            'pretty_version' => '4.5.2',
-            'version' => '4.5.2.0',
-            'reference' => 'da01fb74c08f37e20e7ae49f1e3ee09aa401ebad',
+            'pretty_version' => '4.6.0',
+            'version' => '4.6.0.0',
+            'reference' => '16ec7577ff315d53ac2e1b1f03a344d8fe680a6e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laminas/laminas-code',
             'aliases' => array(),
@@ -908,9 +900,9 @@
             'dev_requirement' => false,
         ),
         'symfony/maker-bundle' => array(
-            'pretty_version' => 'v1.44.0',
-            'version' => '1.44.0.0',
-            'reference' => 'fa535d792e9261ae7a78481f643c00991e1d1588',
+            'pretty_version' => 'v1.45.0',
+            'version' => '1.45.0.0',
+            'reference' => '7ae4ff28ac1b6d6d55591999026040d58b8a3967',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../symfony/maker-bundle',
             'aliases' => array(),

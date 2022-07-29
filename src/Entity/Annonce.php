@@ -99,17 +99,6 @@ class Annonce
      */
     private $idEtat;
 
-
-    /**
-     * @var \Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR")
-     * })
-     */
-    private $idUtilisateur;
-
     /**
      * Constructor
      */
@@ -172,18 +161,6 @@ class Annonce
     }
 
 
-    public function getIdUtilisateur(): ?Utilisateur
-    {
-        return $this->idUtilisateur;
-    }
-
-    public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
-    {
-        $this->idUtilisateur = $idUtilisateur;
-
-        return $this;
-    }
-
     public function getIdSousCategorie(): ?SousCategorie
     {
         return $this->idSousCategorie;
@@ -232,14 +209,6 @@ class Annonce
         $this->idUtilisateur = $idUtilisateur;
 
         return $this;
-    }
-
-     /**
-     * @return Collection<int, Categorie>
-     */
-    public function getIdSousCategorie(): Collection
-    {
-        return $this->idSousCategorie;
     }
 
     public function addIdCategorie(SousCategorie $idSousCategorie): self
