@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Annonce
  *
- * @ORM\Table(name="annonce", indexes={@ORM\Index(name="ANNONCE_SOUS_CATEGORIE1_FK", columns={"ID_SOUS_CATEGORIE"}), @ORM\Index(name="ANNONCE_VILLE2_FK", columns={"ID_VILLE"}), @ORM\Index(name="ANNONCE_ETAT_OBJET_FK", columns={"ID_ETAT"}), @ORM\Index(name="ANNONCE_UTILISATEUR0_FK", columns={"ID_UTILISATEUR"})})
+ * @ORM\Table(name="annonce", indexes={@ORM\Index(name="ANNONCE_VILLE2_FK", columns={"ID_VILLE"}), @ORM\Index(name="ANNONCE_ETAT_OBJET_FK", columns={"ID_ETAT"}), @ORM\Index(name="ANNONCE_UTILISATEUR0_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="ANNONCE_SOUS_CATEGORIE1_FK", columns={"ID_SOUS_CATEGORIE"})})
  * @ORM\Entity(repositoryClass= "App\Repository\AnnonceRepository")
  */
 class Annonce
@@ -56,12 +56,24 @@ class Annonce
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="datetime", nullable=false)
+     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="date", nullable=false)
      */
     private $dateCreationAnnonce;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+
+     * @var \Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR")
+     * })
+     */
+    private $idUtilisateur;
+
+    /**
+     * @var \SousCategorie
+
      *
      * @ORM\ManyToMany(targetEntity="SousCategorie", mappedBy="idAnnonce")
      */
@@ -86,6 +98,7 @@ class Annonce
      * })
      */
     private $idEtat;
+
 
     /**
      * @var \Utilisateur
@@ -158,6 +171,32 @@ class Annonce
         return $this;
     }
 
+
+    public function getIdUtilisateur(): ?Utilisateur
+    {
+        return $this->idUtilisateur;
+    }
+
+    public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
+    {
+        $this->idUtilisateur = $idUtilisateur;
+
+        return $this;
+    }
+
+    public function getIdSousCategorie(): ?SousCategorie
+    {
+        return $this->idSousCategorie;
+    }
+
+    public function setIdSousCategorie(?SousCategorie $idSousCategorie): self
+    {
+        $this->idSousCategorie = $idSousCategorie;
+
+        return $this;
+    }
+
+
     public function getIdVille(): ?Ville
     {
         return $this->idVille;
@@ -181,6 +220,7 @@ class Annonce
 
         return $this;
     }
+
 
     public function getIdUtilisateur(): ?Utilisateur
     {
@@ -220,5 +260,6 @@ class Annonce
 
         return $this;
     }
+
 
 }
