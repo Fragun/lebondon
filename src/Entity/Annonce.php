@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\SousCategorie;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Annonce
@@ -29,6 +32,13 @@ class Annonce
      */
     private $titreAnnonce;
 
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="slug_a", type="string", length=150, nullable=false)
+     */
+    private $slugAnnonce;
+
     /**
      * @var string
      *
@@ -51,6 +61,7 @@ class Annonce
     private $dateCreationAnnonce;
 
     /**
+
      * @var \Utilisateur
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
@@ -62,11 +73,9 @@ class Annonce
 
     /**
      * @var \SousCategorie
+
      *
-     * @ORM\ManyToOne(targetEntity="SousCategorie")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
-     * })
+     * @ORM\ManyToMany(targetEntity="SousCategorie", mappedBy="idAnnonce")
      */
     private $idSousCategorie;
 
@@ -89,6 +98,14 @@ class Annonce
      * })
      */
     private $idEtat;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idSousCategorie = new ArrayCollection();
+    }
 
     public function getIdAnnonce(): ?int
     {
@@ -143,17 +160,6 @@ class Annonce
         return $this;
     }
 
-    public function getIdUtilisateur(): ?Utilisateur
-    {
-        return $this->idUtilisateur;
-    }
-
-    public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
-    {
-        $this->idUtilisateur = $idUtilisateur;
-
-        return $this;
-    }
 
     public function getIdSousCategorie(): ?SousCategorie
     {
@@ -166,6 +172,7 @@ class Annonce
 
         return $this;
     }
+
 
     public function getIdVille(): ?Ville
     {
@@ -187,6 +194,38 @@ class Annonce
     public function setIdEtat(?EtatObjet $idEtat): self
     {
         $this->idEtat = $idEtat;
+
+        return $this;
+    }
+
+
+    public function getIdUtilisateur(): ?Utilisateur
+    {
+        return $this->idUtilisateur;
+    }
+
+    public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
+    {
+        $this->idUtilisateur = $idUtilisateur;
+
+        return $this;
+    }
+
+    public function addIdCategorie(SousCategorie $idSousCategorie): self
+    {
+        if (!$this->idSousCategorie->contains($idSousCategorie)) {
+            $this->idSousCategorie[] = $idSousCategorie;
+            $idSousCategorie->addIdAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdSsousCategorie(SousCategorie $idSousCategorie): self
+    {
+        if ($this->idSousCategorie->removeElement($idSousCategorie)) {
+            $idSousCategorie->removeIdAnnonce($this);
+        }
 
         return $this;
     }
