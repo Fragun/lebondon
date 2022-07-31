@@ -28,7 +28,7 @@ class AnnonceType extends AbstractType
             ->add('titreAnnonce', TextType::class, ['attr'=> ['class'=> 'form-control text-center mt-1'], 'label' => false])
             ->add('descriptionAnnonce', CKEditorType::class, ['attr'=> ['class'=> 'form-control text-center mt-1'], 'label' => false])
             ->add('adresse')
-            ->add('dateCreationAnnonce')
+            //->add('dateCreationAnnonce')
             ->add('idSousCategorie', EntityType::class, [
                 // looks for choices from this entity
                 'class' => SousCategorie::class,

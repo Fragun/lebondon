@@ -99,6 +99,9 @@ class Annonce
      */
     private $idEtat;
 
+
+
+
     /**
      * Constructor
      */
@@ -161,17 +164,8 @@ class Annonce
     }
 
 
-    public function getIdSousCategorie(): ?SousCategorie
-    {
-        return $this->idSousCategorie;
-    }
 
-    public function setIdSousCategorie(?SousCategorie $idSousCategorie): self
-    {
-        $this->idSousCategorie = $idSousCategorie;
 
-        return $this;
-    }
 
 
     public function getIdVille(): ?Ville
@@ -209,6 +203,14 @@ class Annonce
         $this->idUtilisateur = $idUtilisateur;
 
         return $this;
+    }
+
+     /**
+     * @return Collection<int, Categorie>
+     */
+    public function getIdSousCategorie(): Collection
+    {
+        return $this->idSousCategorie;
     }
 
     public function addIdCategorie(SousCategorie $idSousCategorie): self
