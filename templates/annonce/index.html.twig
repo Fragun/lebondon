@@ -116,7 +116,7 @@
 												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label class="mb-1">Catégories</label>
-													
+														{{ form_row(form_annonce.idCategorie) }}
 														{{ form_row(form_annonce.idSousCategorie) }}
 
 													</div>
@@ -124,7 +124,7 @@
 												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label class="mb-1">État du don</label>
-														
+														{{ form_row(form_annonce.idEtat) }}
 													</div>
 												</div>
 												<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -148,29 +148,11 @@
 										
 										<div class="dashboard-list-wraps-body py-3 px-3">
 											<div class="row">
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1">Latitude</label>
-														<input type="text" class="form-control rounded" placeholder="8054256" />
-													</div>
-												</div>
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1">Longitude</label>
-														<input type="text" class="form-control rounded" placeholder="-7254625" />
-													</div>
-												</div>
-												<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-													<div class="form-group">
-														<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27437.803590312993!2d76.75937213955079!3d30.726117899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feda9761bdc2f%3A0x5e764f7f18edc390!2sMidpoint%20Cafe!5e0!3m2!1sen!2sin!4v1649569611177!5m2!1sen!2sin" class="full-width" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-													</div>
-												</div>
+												
 												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label class="mb-1">Ville</label>
-														<select class="form-control">
-
-														</select>
+													
 													</div>
 												</div>
 												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
@@ -215,7 +197,7 @@
 												<div class="col-lg-4 col-md-6">
 													<label class="mb-1">Image 1</label>
 													<form action="/file-upload" class="dropzone" id="single-logo">
-														<i class="fas fa-upload"></i>
+														<i class="fas fa-upload"></i>{{ form_row(form_annonce.images) }}
 													</form>
 													<label class="smart-text">Taille maximum: 2 MB.</label>
 												</div>
@@ -241,21 +223,12 @@
 										</div>
 									</div>
 									
-									
-												<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-													<div class="form-group">
-														<button class="btn theme-bg rounded text-light">{{ button_label|default('Créer l\'annonce') }}</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									
 								</div>
 							</div>
 						</div>
-							
+							{{ form_widget(form_annonce) }}
 					</div>
-					
+{{ form_end(form_annonce) }}					
 					<!-- footer -->
 					<div class="row">
 						<div class="col-md-12">
@@ -270,7 +243,7 @@
 			
 			<a id="tops-button" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
 			
-{{ form_end(form_annonce) }}
+
 		</div>
 		<!-- ============================================================== -->
 		<!-- End Wrapper -->
@@ -299,7 +272,37 @@
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->		
-		
+	<!--	<script>
+			window.onload = ()	=> {
+				let categorie = document.querySelector("#annonce_idCategorie");
+
+				categorie.addEventListener("change", function(){
+					let form = this.closest('form');//permet d'aller chercher la balise form la plus proche
+					let data = this.name+ "=" + this.value;
+
+					fetch(form.action, {
+						method: form.getAttribute("method"),
+						body: data,
+						headers: {
+							"Content-Type": "application/x-www-form-urlencoded; charset:UTF-8"
+					}
+				})
+				.then(response => response.text())
+				.then(html => {
+					let content = document.createElement("html");
+					content.innerHTML = html;
+					let nouveauSelect = content.querySelector("#annonce_idSousCategorie");
+					document.querySelector("#annonce_idSousCategorie").replaceWith(nouveauSelect);
+				})
+				.catch(error => {
+					console.log(error);
+				})
+				});
+			}
+			
+		</script> -->	
+
+
 		<script>
 			Dropzone.options.singleLogo = {
 			  maxFiles: 1,
