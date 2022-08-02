@@ -37,7 +37,7 @@ class AnnonceController extends AbstractController
             
             $annonce->setIdUtilisateur($utilisateur);
             //dd($form_annonce);
-            $annonce->setDateCreationAnnonce(new DateTime());
+            $annonce->setDateCreation(new DateTime());
 // On récupère les images transmises
             $images = $form_annonce->get('images')->getData();
             $manager->persist($annonce);

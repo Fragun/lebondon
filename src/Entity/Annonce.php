@@ -56,9 +56,9 @@ class Annonce
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="datetime", nullable=false)
+     * @ORM\Column(name="DATE_CREATION", type="datetime", nullable=false)
      */
-    private $dateCreationAnnonce;
+    private $dateCreation;
 
     /**
 
@@ -162,14 +162,14 @@ class Annonce
         return $this;
     }
 
-    public function getDateCreationAnnonce(): ?\DateTimeInterface
+    public function getDateCreation(): ?\DateTimeInterface
     {
-        return $this->dateCreationAnnonce;
+        return $this->dateCreation;
     }
 
-    public function setDateCreationAnnonce(\DateTimeInterface $dateCreationAnnonce): self
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
     {
-        $this->dateCreationAnnonce = $dateCreationAnnonce;
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }

@@ -33,8 +33,7 @@ class AnnonceType extends AbstractType
         $builder
             ->add('titreAnnonce', TextType::class, ['attr'=> ['class'=> 'form-control text-center mt-1'], 'label' => false])
             ->add('descriptionAnnonce', CKEditorType::class, ['attr'=> ['class'=> 'form-control text-center mt-1'], 'label' => false])
-            //->add('adresse')
-            ->add('dateCreationAnnonce', HiddenType::class)
+            ->add('dateCreation', HiddenType::class)
             ->add('idCategorie', EntityType::class, [
                 // looks for choices from this entity
                 'class' => Categorie::class,
@@ -66,11 +65,18 @@ class AnnonceType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
-    
                 ])
-            //->add('idVille', EntityType::class,[
-              //  'class' => Ville::class,
-                //])
+
+            ->add('adresse', TextType::class,[
+                'label' => false,
+                'required' => false,
+                ])
+
+            ->add('idVille', TextType::class,[
+                'label' => false,
+                'required' => false,
+                ])
+
             ->add('idEtat', EntityType::class,[
                 'class' => EtatObjet::class,
                 'choice_label' => 'nomEtat', 
