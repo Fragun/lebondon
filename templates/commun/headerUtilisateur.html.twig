@@ -7,8 +7,8 @@
 				<div class="container">
 					<nav id="navigation" class="navigation navigation-landscape">
 						<div class="nav-header">
-							<a class="nav-brand" href="#">
-								<img src="assets/img/logo.png" class="logo" alt="" />
+							<a class="nav-brand" href="{{ path('app_accueil')}}">
+								<img src="assets/img/logoComplet.png" class="logo" alt="logo lebondon" />
 							</a>
 							<div class="nav-toggle"></div>
 							<div class="mobile_nav">
@@ -24,7 +24,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 							
-								<li class="active"><a href="javascript:void(0);">Home</a>
+								<li class="active"><a href="javascript:void(0);">Accueil</a>
 									<ul class="nav-dropdown nav-submenu">
 										<li><a href="index.html">Home Screen 1</a></li>
 										<li><a href="home-2.html">Home Screen 2</a></li>
@@ -76,9 +76,9 @@
 								
 								<li><a href="javascript:void(0);">User Dashboard</a>
 									<ul class="nav-dropdown nav-submenu">
-										<li><a href="dashboard.html"><i class="lni lni-dashboard me-2"></i>Dashboard</a></li>
+										<li><a href="{{ path('app_dashboard')}}"><i class="lni lni-dashboard me-2"></i>Dashboard</a></li>
 										<li><a href="dashboard-my-listings.html"><i class="lni lni-files me-2"></i>My Listings</a></li>
-										<li><a href="dashboard-add-listings.html"><i class="lni lni-add-files me-2"></i>Add Listing</a></li>
+										<li><a href="{{ path('app_annonce')}}"><i class="lni lni-add-files me-2"></i>Add Listing</a></li>
 										<li><a href="dashboard-saved-listings.html"><i class="lni lni-bookmark me-2"></i>Saved Listing</a></li>
 										<li><a href="dashboard-my-bookings.html"><i class="lni lni-briefcase me-2"></i>My Bookings<span class="count-tag bg-warning">4</span></a></li>
 										<li><a href="dashboard-wallet.html"><i class="lni lni-mastercard me-2"></i>Wallet</a></li>
@@ -95,8 +95,8 @@
 										<li><a href="contact.html">Contact</a></li>
 										<li><a href="checkout.html">Checkout</a></li>
 										<li><a href="pricing.html">Pricing</a></li>
-										<li><a href="signup.html">Sign Up</a></li>
-										<li><a href="login.html">Sign In</a></li>
+										<li><a href="signup.html">S'inscrire</a></li>
+										<li><a href="{{ path('app_connexion')}}">Se connecter</a></li>
 										<li><a href="privacy.html">Privacy Policy</a></li>
 										<li><a href="faq.html">FAQs</a></li>
 										
