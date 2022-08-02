@@ -72,7 +72,11 @@ class AnnonceType extends AbstractType
                 'required' => false,
                 ])
 
-            ->add('idVille', TextType::class,[
+            ->add('idVille', EntityType::class,[
+                'class' => Ville::class,
+                'mapped' => false,
+                'choice_label' => 'nomVille',
+                'multiple' => false,
                 'label' => false,
                 'required' => false,
                 ])
