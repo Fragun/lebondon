@@ -35,7 +35,7 @@ class Annonce
         /**
      * @var string
      *
-     * @ORM\Column(name="slug_a", type="string", length=150, nullable=false)
+     * @ORM\Column(name="SLUG_ANNONCE", type="string", length=150, nullable=false)
      */
     private $slugAnnonce;
 
@@ -56,9 +56,9 @@ class Annonce
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="date", nullable=false)
+     * @ORM\Column(name="DATE_CREATION", type="datetime", nullable=false)
      */
-    private $dateCreationAnnonce;
+    private $dateCreation;
 
     /**
 
@@ -91,13 +91,14 @@ class Annonce
 
     /**
      * @var \EtatObjet
+
      *
-     * @ORM\ManyToOne(targetEntity="EtatObjet")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_ETAT", referencedColumnName="ID_ETAT")
-     * })
+     * @ORM\ManyToMany(targetEntity="EtatObjet", mappedBy="idAnnonce")
      */
     private $idEtat;
+
+
+
 
     /**
      * Constructor
@@ -105,6 +106,7 @@ class Annonce
     public function __construct()
     {
         $this->idSousCategorie = new ArrayCollection();
+        $this->idEtat = new ArrayCollection(); 
     }
 
     public function getIdAnnonce(): ?int
@@ -120,6 +122,18 @@ class Annonce
     public function setTitreAnnonce(string $titreAnnonce): self
     {
         $this->titreAnnonce = $titreAnnonce;
+
+        return $this;
+    }
+
+    public function getSlugAnnonce(): ?string
+    {
+        return $this->slugAnnonce;
+    }
+
+    public function setSlugAnnonce(string $slugAnnonce): self
+    {
+        $this->slugAnnonce = $slugAnnonce;
 
         return $this;
     }
@@ -148,31 +162,17 @@ class Annonce
         return $this;
     }
 
-    public function getDateCreationAnnonce(): ?\DateTimeInterface
+    public function getDateCreation(): ?\DateTimeInterface
     {
-        return $this->dateCreationAnnonce;
+        return $this->dateCreation;
     }
 
-    public function setDateCreationAnnonce(\DateTimeInterface $dateCreationAnnonce): self
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
     {
-        $this->dateCreationAnnonce = $dateCreationAnnonce;
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
-
-
-    public function getIdSousCategorie(): ?SousCategorie
-    {
-        return $this->idSousCategorie;
-    }
-
-    public function setIdSousCategorie(?SousCategorie $idSousCategorie): self
-    {
-        $this->idSousCategorie = $idSousCategorie;
-
-        return $this;
-    }
-
 
     public function getIdVille(): ?Ville
     {
@@ -186,19 +186,6 @@ class Annonce
         return $this;
     }
 
-    public function getIdEtat(): ?EtatObjet
-    {
-        return $this->idEtat;
-    }
-
-    public function setIdEtat(?EtatObjet $idEtat): self
-    {
-        $this->idEtat = $idEtat;
-
-        return $this;
-    }
-
-
     public function getIdUtilisateur(): ?Utilisateur
     {
         return $this->idUtilisateur;
@@ -209,6 +196,22 @@ class Annonce
         $this->idUtilisateur = $idUtilisateur;
 
         return $this;
+    }
+
+         /**
+     * @return Collection<int, EtatObjet>
+     */
+    public function getIdEtat(): Collection
+    {
+        return $this->idEtat;
+    }
+
+     /**
+     * @return Collection<int, Categorie>
+     */
+    public function getIdSousCategorie(): Collection
+    {
+        return $this->idSousCategorie;
     }
 
     public function addIdCategorie(SousCategorie $idSousCategorie): self

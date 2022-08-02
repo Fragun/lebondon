@@ -104,10 +104,10 @@ a {
 
 a:hover,
 a:focus {
-  text-decoration: none; }
+    text-decoration: none; }
 
 a.link {
-  color:#34495e; }
+    color:#34495e; }
 a.link:hover, a.link:focus, a:hover, a:focus {
     color:#111111; 
 }
@@ -124,7 +124,7 @@ a.text-danger:focus, a.text-danger:hover {
     color:#ea2b33 !important;
 }
 a.white-link {
-  color: #ffffff; 
+    color: #ffffff; 
 }
 a.bg-light:focus, a.bg-light:hover {
     background-color: #f6f8f7!important;
@@ -1175,7 +1175,7 @@ button.close {
     color:#F41b3b;
     cursor: pointer;
     background-color:transparent;
-    border-color#F41b3b;
+    border-color:#F41b3b;
 }
 
 .pagination li:first-child a {
@@ -1290,12 +1290,12 @@ outline:none;
 
 /*--------------- GLobal Settings: On off switch ---------------*/
 .onoffswitch {
-  position: relative;
-  width: 70px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  margin: 0 auto;
+    position: relative;
+    width: 70px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    margin: 0 auto;
 }
 
 .onoffswitch-checkbox {
@@ -7023,7 +7023,7 @@ span._user_status.busy {
 }
 
 /*===================================================
- Blog Designs
+Blog Designs
 ==================================================*/
 /*------------------- Blog Grid Design --------------*/
 .gup_blg_grid_box{
@@ -8171,7 +8171,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:hover, footer.skin-dark-foo
 }
 
 /*====================================
- Bottom To top Button Design
+Bottom To top Button Design
 =====================================*/
 #tops-button {
     width: 40px;

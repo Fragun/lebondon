@@ -8,16 +8,18 @@ use App\Entity\Annonce;
 use App\Form\AnnonceType;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class AnnonceController extends AbstractController
 {
-    #[Route('/ajouter_annonce', name: 'app_annonce')]
-    public function ajouterAnnonce(Request $request,EntityManagerInterface $manager): Response
+    #[Route('/ajouter-annonce', name: 'app_annonce')]
+    public function ajouterAnnonce(Request $request,EntityManagerInterface $manager, TokenStorageInterface $tokenStorage): Response
     {
         //$utilisateur->getIdUtilisateur();  mettre UserInterface $utilisateur, en parametre
         $annonce = new Annonce();
@@ -27,14 +29,15 @@ class AnnonceController extends AbstractController
         
         if ($form_annonce->isSubmitted() && $form_annonce->isValid()) {
 
-            //dd($utilisateur);
+            $utilisateur = $tokenStorage->getToken()->getUser();
+
             $slugify = new Slugify();
             $slug = $slugify->slugify($annonce->getTitreAnnonce()); 
             $annonce->setSlugAnnonce($slug);
-           // dd($utilisateur->getIdUtilisateur());
+            
             $annonce->setIdUtilisateur($utilisateur);
             //dd($form_annonce);
-            $annonce->setDateCreationAnnonce(new DateTime());
+            $annonce->setDateCreation(new DateTime());
 // On récupère les images transmises
             $images = $form_annonce->get('images')->getData();
             $manager->persist($annonce);
@@ -51,8 +54,8 @@ class AnnonceController extends AbstractController
                 
                 // On crée l'image dans la base de données
                 $img = new Image();
-                $img->setLibImage($fichier);
-                $img->setIdArticle($annonce);
+                $img->setNomImage($fichier);
+                $img->setIdAnnonce($annonce);
                 $manager->persist($img);
                 $manager->flush();
             }
@@ -64,7 +67,7 @@ class AnnonceController extends AbstractController
 
                 icon: 'success',
 
-                title: 'Bravo, votre article a bien été créé !',
+                title: 'Bravo, votre annonce a bien été créé !',
 
                 showConfirmButton: false,
 

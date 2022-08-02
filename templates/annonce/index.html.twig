@@ -3,7 +3,6 @@
 {% block title %}Hello AnnonceController!{% endblock %}
 
 {% block body %}
-<body>
 	
 		 <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
@@ -59,18 +58,18 @@
 						<div class="goodup-dashboard-inner">
 							<ul data-submenu-title="Main Navigation">
 								<li><a href="dashboard.html"><i class="lni lni-dashboard me-2"></i>Dashboard</a></li>
-								<li><a href="dashboard-my-listings.html"><i class="lni lni-files me-2"></i>My Listings</a></li>
-								<li class="active"><a href="dashboard-add-listings.html"><i class="lni lni-add-files me-2"></i>Add Listing</a></li>
-								<li><a href="dashboard-saved-listings.html"><i class="lni lni-bookmark me-2"></i>Saved Listing</a></li>
-								<li><a href="dashboard-my-bookings.html"><i class="lni lni-briefcase me-2"></i>My Bookings<span class="count-tag bg-warning">4</span></a></li>
-								<li><a href="dashboard-wallet.html"><i class="lni lni-mastercard me-2"></i>Wallet</a></li>
+								<li><a href="dashboard-my-listings.html"><i class="lni lni-files me-2"></i>Mes annonces</a></li>
+								<li class="active"><a href="dashboard-add-listings.html"><i class="lni lni-add-files me-2"></i>Ajouter une annonce</a></li>
+								<li><a href="dashboard-saved-listings.html"><i class="lni lni-bookmark me-2"></i>Annonces favorites</a></li>
+								<li><a href="dashboard-my-bookings.html"><i class="lni lni-briefcase me-2"></i>Mes donneurs préférés<span class="count-tag bg-warning">4</span></a></li>
+								<li><a href="dashboard-wallet.html"><i class="lni lni-mastercard me-2"></i>Mes statistiques</a></li>
 								<li><a href="dashboard-messages.html"><i class="lni lni-envelope me-2"></i>Messages<span class="count-tag">4</span></a></li>
 							</ul>
 							<ul data-submenu-title="My Accounts">
-								<li><a href="dashboard-my-profile.html"><i class="lni lni-user me-2"></i>My Profile </a></li>
-								<li><a href="dashboard-change-password.html"><i class="lni lni-lock-alt me-2"></i>Change Password</a></li>
-								<li><a href="javascript:void(0);"><i class="lni lni-trash-can me-2"></i>Delete Account</a></li>
-								<li><a href="login.html"><i class="lni lni-power-switch me-2"></i>Log Out</a></li>
+								<li><a href="dashboard-my-profile.html"><i class="lni lni-user me-2"></i>Mon profil </a></li>
+								<li><a href="dashboard-change-password.html"><i class="lni lni-lock-alt me-2"></i>Changer votre mot de passe</a></li>
+								<li><a href="javascript:void(0);"><i class="lni lni-trash-can me-2"></i>Supprimer le compte</a></li>
+								<li><a href="login.html"><i class="lni lni-power-switch me-2"></i>Déconnexion</a></li>
 							</ul>
 						</div>					
 					</div>
@@ -80,12 +79,12 @@
 					<div class="dashboard-tlbar d-block mb-5">
 						<div class="row">
 							<div class="colxl-12 col-lg-12 col-md-12">
-								<h1 class="ft-medium">Add Listing</h1>
+								<h1 class="ft-medium">Ajouter une annonce</h1>
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item text-muted"><a href="#">Home</a></li>
+										<li class="breadcrumb-item text-muted"><a href="#">Accueil</a></li>
 										<li class="breadcrumb-item text-muted"><a href="#">Dashboard</a></li>
-										<li class="breadcrumb-item"><a href="#" class="theme-cl">Add Listing</a></li>
+										<li class="breadcrumb-item"><a href="#" class="theme-cl">Ajouter une annonce</a></li>
 									</ol>
 								</nav>
 							</div>
@@ -94,7 +93,7 @@
 					{{ form_start(form_annonce) }}
 					<div class="dashboard-widg-bar d-block">
 						<div class="row">
-							<div class="col-xl-12 col-lg-2 col-md-12 col-sm-12">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 								<div class="submit-form">
 									
 									<!-- Listing Info -->
@@ -117,22 +116,15 @@
 												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label class="mb-1">Catégories</label>
-														<select class="form-control">
-														<option>{{ form_row(form_annonce.idSousCategorie) }}</option>
-															<option>Hotel & Spa</option>
-															<option>Education</option>
-															<option>Wedding</option>
-															<option>Restaurents</option>
-															<option>Cafe & Bars</option>
-															<option>Bankings</option>
-															<option>Services</option>
-														</select>
+														{{ form_row(form_annonce.idCategorie) }}
+														{{ form_row(form_annonce.idSousCategorie) }}
+
 													</div>
 												</div>
 												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label class="mb-1">État du don</label>
-														<input type="text" class="form-control rounded" placeholder="Type keywords by comma's" />
+														{{ form_row(form_annonce.idEtat) }}
 													</div>
 												</div>
 												<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -156,54 +148,17 @@
 										
 										<div class="dashboard-list-wraps-body py-3 px-3">
 											<div class="row">
+												
 												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 													<div class="form-group">
-														<label class="mb-1">Latitude</label>
-														<input type="text" class="form-control rounded" placeholder="8054256" />
-													</div>
-												</div>
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1">Longitude</label>
-														<input type="text" class="form-control rounded" placeholder="-7254625" />
-													</div>
-												</div>
-												<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-													<div class="form-group">
-														<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27437.803590312993!2d76.75937213955079!3d30.726117899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feda9761bdc2f%3A0x5e764f7f18edc390!2sMidpoint%20Cafe!5e0!3m2!1sen!2sin!4v1649569611177!5m2!1sen!2sin" class="full-width" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-													</div>
-												</div>
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1">State</label>
-														<select class="form-control">
-															<option>Uttar Pradesh</option>
-															<option>Uttrakhand</option>
-															<option>Gujrat</option>
-															<option>Mumbai</option>
-															<option>Karnatak</option>
-															<option>Goa</option>
-															<option>Punjab</option>
-														</select>
-													</div>
-												</div>
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1">City</label>
-														<select class="form-control">
-															<option>Aligarh</option>
-															<option>Allahabad</option>
-															<option>Agra</option>
-															<option>Gonda</option>
-															<option>Lucknow</option>
-															<option>Meeruth</option>
-															<option>Gaziabad</option>
-														</select>
+														<label class="mb-1">Ville</label>
+													{{ form_row(form_annonce.idVille) }}
 													</div>
 												</div>
 												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 													<div class="form-group">
 														<label class="mb-1">Adresse</label>
+														{{ form_row(form_annonce.adresse) }}
 														<input type="text" class="form-control rounded" placeholder="USA 20TH Berlin Market NY" />
 													</div>
 												</div>
@@ -233,7 +188,7 @@
 									<div class="dashboard-list-wraps bg-white rounded mb-4">
 										<div class="dashboard-list-wraps-head br-bottom py-3 px-3">
 											<div class="dashboard-list-wraps-flx">
-												<h4 class="mb-0 ft-medium fs-md"><i class="fa fa-camera me-2 theme-cl fs-sm"></i>Images (3 maximum</h4>	
+												<h4 class="mb-0 ft-medium fs-md"><i class="fa fa-camera me-2 theme-cl fs-sm"></i>Image & Gallery Option</h4>	
 											</div>
 										</div>
 										
@@ -241,86 +196,44 @@
 											<div class="row">
 												<!-- Logo -->
 												<div class="col-lg-4 col-md-6">
-													<label class="mb-1">Upload Logo</label>
+													<label class="mb-1">Image 1</label>
 													<form action="/file-upload" class="dropzone" id="single-logo">
-														<i class="fas fa-upload"></i>
+														<i class="fas fa-upload"></i>{{ form_row(form_annonce.images) }}
 													</form>
-													<label class="smart-text">Maximum file size: 2 MB.</label>
+													<label class="smart-text">Taille maximum: 2 MB.</label>
 												</div>
 												
 												<!-- Featured Image -->
 												<div class="col-lg-4 col-md-6">
-													<label class="mb-1">Featured Image</label>
+													<label class="mb-1">Image 2</label>
 													<form action="/file-upload" class="dropzone" id="featured-image">
 														<i class="fas fa-upload"></i>
 													</form>
-													<label class="smart-text">Maximum file size: 2 MB.</label>
+													<label class="smart-text">Taille maximum: 2 MB.</label>
 												</div>
 												
 												<!-- Gallery -->
 												<div class="col-lg-4 col-md-12">
-													<label class="mb-1">Image Gallery</label>
+													<label class="mb-1">Image 3</label>
 													<form action="/file-upload" class="dropzone" id="gallery">
 														<i class="fas fa-upload"></i>
 													</form>
-													<label class="smart-text">Maximum file size: 2 MB.</label>
+													<label class="smart-text">Taille maximum: 2 MB.</label>
 												</div>
 											</div>
 										</div>
 									</div>
 									
-									<!-- Social Links -->
-									<div class="dashboard-list-wraps bg-white rounded mb-4">
-										<div class="dashboard-list-wraps-head br-bottom py-3 px-3">
-											<div class="dashboard-list-wraps-flx">
-												<h4 class="mb-0 ft-medium fs-md"><i class="fa fa-user-friends me-2 theme-cl fs-sm"></i>Social Links</h4>	
-											</div>
-										</div>
-										
-										<div class="dashboard-list-wraps-body py-3 px-3">
-											<div class="row">
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1"><i class="ti-facebook theme-cl me-1"></i>Facebook</label>
-														<input type="text" class="form-control rounded" placeholder="https://facebook.com/" />
-													</div>
-												</div>
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1"><i class="ti-twitter theme-cl me-1"></i>Twitter</label>
-														<input type="text" class="form-control rounded" placeholder="https://twitter.com/" />
-													</div>
-												</div>
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1"><i class="ti-instagram theme-cl me-1"></i>Instagram</label>
-														<input type="text" class="form-control rounded" placeholder="https://instagram.com/" />
-													</div>
-												</div>
-												<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-													<div class="form-group">
-														<label class="mb-1"><i class="ti-linkedin theme-cl me-1"></i>Linkedin</label>
-														<input type="text" class="form-control rounded" placeholder="https://linkedin.com/" />
-													</div>
-												</div>
-												<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-													<div class="form-group">
-														<button class="btn theme-bg rounded text-light">{{ button_label|default('Créer l\'annonce') }}</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
-							
+							{{ form_widget(form_annonce) }}
 					</div>
-					
+{{ form_end(form_annonce) }}					
 					<!-- footer -->
 					<div class="row">
 						<div class="col-md-12">
-							<div class="py-3">© 2022 Goodup. Designd By ThemezHub.</div>
+							<div class="py-3">© 2022 Lebondon.</div>
 						</div>
 					</div>
 		
@@ -331,7 +244,7 @@
 			
 			<a id="tops-button" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
 			
-{{ form_end(form_annonce) }}
+
 		</div>
 		<!-- ============================================================== -->
 		<!-- End Wrapper -->
@@ -360,7 +273,37 @@
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->		
-		
+	<!--	<script>
+			window.onload = ()	=> {
+				let categorie = document.querySelector("#annonce_idCategorie");
+
+				categorie.addEventListener("change", function(){
+					let form = this.closest('form');//permet d'aller chercher la balise form la plus proche
+					let data = this.name+ "=" + this.value;
+
+					fetch(form.action, {
+						method: form.getAttribute("method"),
+						body: data,
+						headers: {
+							"Content-Type": "application/x-www-form-urlencoded; charset:UTF-8"
+					}
+				})
+				.then(response => response.text())
+				.then(html => {
+					let content = document.createElement("html");
+					content.innerHTML = html;
+					let nouveauSelect = content.querySelector("#annonce_idSousCategorie");
+					document.querySelector("#annonce_idSousCategorie").replaceWith(nouveauSelect);
+				})
+				.catch(error => {
+					console.log(error);
+				})
+				});
+			}
+			
+		</script> -->	
+
+
 		<script>
 			Dropzone.options.singleLogo = {
 			  maxFiles: 1,
@@ -403,5 +346,4 @@
 			};
 		</script>
 
-	</body>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * EtatObjet
@@ -27,6 +28,7 @@ class EtatObjet
      * @ORM\Column(name="NOM_ETAT", type="string", length=20, nullable=false)
      */
     private $nomEtat;
+
 
     public function getIdEtat(): ?int
     {

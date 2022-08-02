@@ -244,6 +244,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
    {
        return null;
    }
-
+   public function __toString()
+   {
+       return $this->idUtilisateur;
+   }
 
 }
