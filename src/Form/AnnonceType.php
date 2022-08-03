@@ -10,7 +10,6 @@ use App\Entity\SousCategorie;
 use App\Repository\AnnonceRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\SousCategorieRepository;
-
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
