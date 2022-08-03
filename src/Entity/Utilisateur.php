@@ -88,6 +88,16 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      */
     private $roleUtilisateur;
 
+    //Pour pouvoir stocker le statut “Vérifié” de notre utilisateur
+    #[ORM\Column(type: 'boolean')]
+    private $is_verified = false;
+
+    //pour donner un jeton demandant la demande de reinit mot de passe
+    #[ORM\Column(type: 'string', length: 100)]
+    private $resetToken;
+
+
+
     public function getIdUtilisateur(): ?int
     {
         return $this->idUtilisateur;
@@ -240,10 +250,34 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
        return $this->mdpUtilisateur;
    }
 
-   public function getPasswordHasherName(): ?string
+   public function setPasswordHasherName(): ?string
    {
        return null;
    }
 
+
+   public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+    
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+    
+        return $this;
+    }
 
 }
