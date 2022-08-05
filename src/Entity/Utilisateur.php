@@ -88,6 +88,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      */
     private $roleUtilisateur;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="RESET_TOKEN", type="string", length=50, nullable=false)
+     */
+    private $resetToken;
+
     public function getIdUtilisateur(): ?int
     {
         return $this->idUtilisateur;
@@ -244,6 +251,32 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
    {
        return null;
    }
+   public function __toString()
+   {
+       return $this->idUtilisateur;
+   }
 
+       /**
+     * Get the value of resetToken
+     *
+     * @return  string
+     */ 
+    public function getResetToken()
+    {
+        return $this->resetToken;
+    }
 
+    /**
+     * Set the value of resetToken
+     *
+     * @param  string  $resetToken
+     *
+     * @return  self
+     */ 
+    public function setResetToken(string $resetToken)
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
 }
