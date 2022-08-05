@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Departement
  *
  * @ORM\Table(name="departement")
- * @ORM\Entity(repositoryClass= "App\Repository\DepartementRepository")
+ * @ORM\Entity
  */
 class Departement
 {
@@ -27,23 +27,6 @@ class Departement
      * @ORM\Column(name="NOM_DEPARTEMENT", type="string", length=100, nullable=false)
      */
     private $nomDepartement;
-
-    public function getIdDepartement(): ?int
-    {
-        return $this->idDepartement;
-    }
-
-    public function getNomDepartement(): ?string
-    {
-        return $this->nomDepartement;
-    }
-
-    public function setNomDepartement(string $nomDepartement): self
-    {
-        $this->nomDepartement = $nomDepartement;
-
-        return $this;
-    }
 
 
 }

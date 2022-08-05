@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * DisponibiliteObjet
  *
  * @ORM\Table(name="disponibilite_objet")
- * @ORM\Entity(repositoryClass= "App\Repository\DisponibiliteObjetRepository")
+ * @ORM\Entity
  */
 class DisponibiliteObjet
 {
@@ -27,23 +27,6 @@ class DisponibiliteObjet
      * @ORM\Column(name="NOM_DISPONIBILITE", type="string", length=15, nullable=false)
      */
     private $nomDisponibilite;
-
-    public function getIdDisponibilite(): ?int
-    {
-        return $this->idDisponibilite;
-    }
-
-    public function getNomDisponibilite(): ?string
-    {
-        return $this->nomDisponibilite;
-    }
-
-    public function setNomDisponibilite(string $nomDisponibilite): self
-    {
-        $this->nomDisponibilite = $nomDisponibilite;
-
-        return $this;
-    }
 
 
 }

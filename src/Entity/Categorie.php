@@ -8,8 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Categorie
  *
  * @ORM\Table(name="categorie")
- * @ORM\Entity(repositoryClass= "App\Repository\CategorieRepository")
-
+ * @ORM\Entity
  */
 class Categorie
 {
@@ -28,23 +27,6 @@ class Categorie
      * @ORM\Column(name="NOM_CATEGORIE", type="string", length=150, nullable=false)
      */
     private $nomCategorie;
-
-    public function getIdCategorie(): ?int
-    {
-        return $this->idCategorie;
-    }
-
-    public function getNomCategorie(): ?string
-    {
-        return $this->nomCategorie;
-    }
-
-    public function setNomCategorie(string $nomCategorie): self
-    {
-        $this->nomCategorie = $nomCategorie;
-
-        return $this;
-    }
 
 
 }

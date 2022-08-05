@@ -2,17 +2,13 @@
 
 namespace App\Entity;
 
-use App\Entity\SousCategorie;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Annonce
  *
- * @ORM\Table(name="annonce", indexes={@ORM\Index(name="ANNONCE_VILLE2_FK", columns={"ID_VILLE"}), @ORM\Index(name="ANNONCE_ETAT_OBJET_FK", columns={"ID_ETAT"}), @ORM\Index(name="ANNONCE_UTILISATEUR0_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="ANNONCE_SOUS_CATEGORIE1_FK", columns={"ID_SOUS_CATEGORIE"})})
- * @ORM\Entity(repositoryClass= "App\Repository\AnnonceRepository")
+ * @ORM\Table(name="annonce", indexes={@ORM\Index(name="ANNONCE_UTILISATEUR0_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="ANNONCE_SOUS_CATEGORIE1_FK", columns={"ID_SOUS_CATEGORIE"}), @ORM\Index(name="ANNONCE_VILLE2_FK", columns={"ID_VILLE"}), @ORM\Index(name="ANNONCE_ETAT_OBJET_FK", columns={"ID_ETAT"})})
+ * @ORM\Entity
  */
 class Annonce
 {
@@ -32,13 +28,6 @@ class Annonce
      */
     private $titreAnnonce;
 
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="slug_a", type="string", length=150, nullable=false)
-     */
-    private $slugAnnonce;
-
     /**
      * @var string
      *
@@ -56,26 +45,17 @@ class Annonce
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="date", nullable=false)
+     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="datetime", nullable=false)
      */
     private $dateCreationAnnonce;
 
     /**
-
-     * @var \Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR")
-     * })
-     */
-    private $idUtilisateur;
-
-    /**
      * @var \SousCategorie
-
      *
-     * @ORM\ManyToMany(targetEntity="SousCategorie", mappedBy="idAnnonce")
+     * @ORM\ManyToOne(targetEntity="SousCategorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
+     * })
      */
     private $idSousCategorie;
 
@@ -99,138 +79,15 @@ class Annonce
      */
     private $idEtat;
 
-
-
-
     /**
-     * Constructor
+     * @var \Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR")
+     * })
      */
-    public function __construct()
-    {
-        $this->idSousCategorie = new ArrayCollection();
-    }
-
-    public function getIdAnnonce(): ?int
-    {
-        return $this->idAnnonce;
-    }
-
-    public function getTitreAnnonce(): ?string
-    {
-        return $this->titreAnnonce;
-    }
-
-    public function setTitreAnnonce(string $titreAnnonce): self
-    {
-        $this->titreAnnonce = $titreAnnonce;
-
-        return $this;
-    }
-
-    public function getDescriptionAnnonce(): ?string
-    {
-        return $this->descriptionAnnonce;
-    }
-
-    public function setDescriptionAnnonce(string $descriptionAnnonce): self
-    {
-        $this->descriptionAnnonce = $descriptionAnnonce;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(string $adresse): self
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    public function getDateCreationAnnonce(): ?\DateTimeInterface
-    {
-        return $this->dateCreationAnnonce;
-    }
-
-    public function setDateCreationAnnonce(\DateTimeInterface $dateCreationAnnonce): self
-    {
-        $this->dateCreationAnnonce = $dateCreationAnnonce;
-
-        return $this;
-    }
-
-
-
-
-
-
-    public function getIdVille(): ?Ville
-    {
-        return $this->idVille;
-    }
-
-    public function setIdVille(?Ville $idVille): self
-    {
-        $this->idVille = $idVille;
-
-        return $this;
-    }
-
-    public function getIdEtat(): ?EtatObjet
-    {
-        return $this->idEtat;
-    }
-
-    public function setIdEtat(?EtatObjet $idEtat): self
-    {
-        $this->idEtat = $idEtat;
-
-        return $this;
-    }
-
-
-    public function getIdUtilisateur(): ?Utilisateur
-    {
-        return $this->idUtilisateur;
-    }
-
-    public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
-    {
-        $this->idUtilisateur = $idUtilisateur;
-
-        return $this;
-    }
-
-     /**
-     * @return Collection<int, Categorie>
-     */
-    public function getIdSousCategorie(): Collection
-    {
-        return $this->idSousCategorie;
-    }
-
-    public function addIdCategorie(SousCategorie $idSousCategorie): self
-    {
-        if (!$this->idSousCategorie->contains($idSousCategorie)) {
-            $this->idSousCategorie[] = $idSousCategorie;
-            $idSousCategorie->addIdAnnonce($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdSsousCategorie(SousCategorie $idSousCategorie): self
-    {
-        if ($this->idSousCategorie->removeElement($idSousCategorie)) {
-            $idSousCategorie->removeIdAnnonce($this);
-        }
-
-        return $this;
-    }
+    private $idUtilisateur;
 
 
 }

@@ -95,6 +95,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      */
     private $resetToken;
 
+
+
     public function getIdUtilisateur(): ?int
     {
         return $this->idUtilisateur;
@@ -256,7 +258,8 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
        return $this->idUtilisateur;
    }
 
-       /**
+
+    /**
      * Get the value of resetToken
      *
      * @return  string

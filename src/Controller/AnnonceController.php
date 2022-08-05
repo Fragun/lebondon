@@ -16,8 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnnonceController extends AbstractController
 {
-    #[Route('/dashboard/ajouter-annonce', name: 'app_annonce')]
-    public function ajouterAnnonce(Request $request,EntityManagerInterface $manager): Response
+    #[Route('dashboard/annonce', name: 'app_annonce')]
+    public function ajouterAnnonce(Request $request,EntityManagerInterface $manager, UserInterface $utilisateur): Response
     {
         //$utilisateur->getIdUtilisateur();  mettre UserInterface $utilisateur, en parametre
         $annonce = new Annonce();
@@ -32,7 +32,7 @@ class AnnonceController extends AbstractController
             $slug = $slugify->slugify($annonce->getTitreAnnonce()); 
             $annonce->setSlugAnnonce($slug);
            // dd($utilisateur->getIdUtilisateur());
-            $annonce->setIdUtilisateur();
+            $annonce->setIdUtilisateur($utilisateur->getIdUtilisateur());
             //dd($form_annonce);
             $annonce->setDateCreationAnnonce(new DateTime());
 // On récupère les images transmises
@@ -80,7 +80,7 @@ class AnnonceController extends AbstractController
 
 
 
-        return $this->render('dashboard/ajouter-annonce/index.html.twig', [
+        return $this->render('annonce/index.html.twig', [
             'controller_name' => 'AnnonceController',
             'form_annonce' => $form_annonce->createView()
 
