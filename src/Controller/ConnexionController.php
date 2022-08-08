@@ -17,10 +17,10 @@ use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 class ConnexionController extends AbstractController
 {
-    #[Route('connexion', name: 'app_connexion')]
+    #[Route('/connexion', name: 'app_connexion')]
     public function index(): Response
     {
-        return $this->render('connexion/index.html.twig', [
+        return $this->render('/connexion/index.html.twig', [
             'controller_name' => 'ConnexionController',
             
         ]);
@@ -126,6 +126,7 @@ class ConnexionController extends AbstractController
         // Si le token est invalide on redirige vers le login
         $this->addFlash('danger', 'Jeton invalide');
         return $this->redirectToRoute('app_connexion');
+
     }
 
 

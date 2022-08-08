@@ -16,8 +16,8 @@
 										<h4 class="m-0 ft-medium">Connectez-vous</h4>
 										</div>
 										<div class="form-group">
-											<label class="mb-1">Pseudo</label>
-											<input type="text" class="form-control rounded" name="_username" id="floatingInput" placeholder="Saisissez votre pseudo">
+											<label class="mb-1">Adresse mail</label>
+											<input type="text" class="form-control rounded" name="_username" id="floatingInput" placeholder="Saisissez votre adresse mail">
 										</div>
 										
 										<div class="form-group">
@@ -38,7 +38,7 @@
 										</div>
 										
 										<div class="form-group">
-											<input type="hidden" name="_target_path" value="{{path('app_annonce')}}" />
+											<input type="hidden" name="_target_path" value="{{path('app_dashboard')}}" />
 											<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
 											<button type="submit" class="btn btn-md full-width theme-bg text-light rounded ft-medium">Connecter</button>
 										</div>
@@ -64,5 +64,7 @@
 				</div>
 			</section>
 			<!-- ======================= Login End ======================== -->
-			
+{% for message1 in app.flashes('message1') %}
+{{ message1|raw }}
+{% endfor %}			
 {% endblock %}
