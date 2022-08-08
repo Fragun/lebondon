@@ -249,6 +249,11 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
        return $this->mdpUtilisateur;
    }
 
+   public function setPasswordHasherName(): ?string
+   {
+       return null;
+   }
+
    public function getPasswordHasherName(): ?string
    {
        return null;
@@ -258,28 +263,29 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
        return $this->idUtilisateur;
    }
 
-
-    /**
-     * Get the value of resetToken
-     *
-     * @return  string
-     */ 
-    public function getResetToken()
+   public function getIsVerified(): ?bool
     {
-        return $this->resetToken;
+        return $this->is_verified;
     }
 
-    /**
-     * Set the value of resetToken
-     *
-     * @param  string  $resetToken
-     *
-     * @return  self
-     */ 
-    public function setResetToken(string $resetToken)
+    public function setIsVerified(bool $is_verified): self
     {
-        $this->resetToken = $resetToken;
+        $this->is_verified = $is_verified;
 
         return $this;
     }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+    
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+    
+        return $this;
+    }
+
+    
 }

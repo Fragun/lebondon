@@ -47,7 +47,7 @@ class Annonce
      *
      * @ORM\Column(name="DATE_CREATION_ANNONCE", type="datetime", nullable=false)
      */
-    private $dateCreationAnnonce;
+    private $dateCreation;
 
     /**
      * @var \SousCategorie
@@ -71,13 +71,14 @@ class Annonce
 
     /**
      * @var \EtatObjet
+
      *
-     * @ORM\ManyToOne(targetEntity="EtatObjet")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_ETAT", referencedColumnName="ID_ETAT")
-     * })
+     * @ORM\ManyToMany(targetEntity="EtatObjet", mappedBy="idAnnonce")
      */
     private $idEtat;
+
+
+
 
     /**
      * @var \Utilisateur

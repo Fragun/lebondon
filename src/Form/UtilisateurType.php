@@ -14,7 +14,7 @@ class UtilisateurType extends AbstractType
     {
         $builder
         ->add('pseudo', TextType::class, ['attr' => ['class' => 'form-control'], 'label'=> false])
-        ->add('email', EmailType::class, ['attr' => ['class' => 'form-control'], 'label'=> false])
+        ->add('mailUtilisateur', EmailType::class, ['attr' => ['class' => 'form-control'], 'label'=> false])
         ->add('mdp', PasswordType::class, ['attr' => ['class' => 'form-control'], 'label'=> false])
         ->add('dateInscrip', HiddenType::class)
         ->add('ipInscript', HiddenType::class)

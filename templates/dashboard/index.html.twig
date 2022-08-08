@@ -15,11 +15,11 @@
         <!-- ============================================================== -->
         <div id="main-wrapper">
 		
-           {% include 'commun/header.html.twig' %}
+           {% include 'commun/headerUtilisateur.html.twig' %}
 			
 			<!-- =============================== Dashboard Header ========================== -->
 			<section class="bg-cover position-relative" style="background:red url(https://via.placeholder.com/1920x900) no-repeat;" data-overlay="3">
-				<div class="abs-list-sec"><a href="dashboard-add-listing.html" class="add-list-btn"><i class="fas fa-plus me-2"></i>Faire un don</a></div>
+				<div class="abs-list-sec"><a href="{{ path('app_annonce')}}" class="add-list-btn"><i class="fas fa-plus me-2"></i>Faire un don</a></div>
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -50,7 +50,7 @@
 					<div class="goodup-dashboard-nav sticky-top">
 						<div class="goodup-dashboard-inner">
 							<ul data-submenu-title="Main Navigation">
-								<li class="active"><a href="dashboard.html"><i class="lni lni-dashboard me-2"></i>Dashboard</a></li>
+								<li class="active"><a href="{{ path('app_dashboard')}}"><i class="lni lni-dashboard me-2"></i>Dashboard</a></li>
 								<li><a href="dashboard-my-listings.html"><i class="lni lni-files me-2"></i>My Listings</a></li>
 								<li><a href="dashboard-add-listings.html"><i class="lni lni-add-files me-2"></i>Add Listing</a></li>
 								<li><a href="dashboard-saved-listings.html"><i class="lni lni-bookmark me-2"></i>Saved Listing</a></li>
