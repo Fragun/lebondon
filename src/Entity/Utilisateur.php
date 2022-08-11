@@ -2,6 +2,11 @@
 
 namespace App\Entity;
 
+<<<<<<< Updated upstream
+=======
+
+use App\Entity\Utilisateur;
+>>>>>>> Stashed changes
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -97,107 +102,278 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
 
 
 
-    public function getIdUtilisateur(): ?int
+
+
+
+    public function getRoleUtilisateur(): ?string
+    {
+        return $this->roleUtilisateur;
+    }
+
+    public function setRoleUtilisateur(string $roleUtilisateur): self
+    {
+        $this->roleUtilisateur = $roleUtilisateur;
+
+        return $this;
+    }
+
+    /* The public representation of the user (e.g. a username, an email address, etc.)
+    *
+    * @see UserInterface
+    */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->mailUtilisateur;
+    }
+
+    /* @see UserInterface
+    */
+    public function getRoles(): array
+    {
+        $roles[] = $this->roleUtilisateur;
+        return array_unique($roles);
+    }
+
+    /*
+    * @see UserInterface
+    */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /* @see UserInterface
+    */
+    public function eraseCredentials()
+    {
+    }
+
+
+    /**
+    * @see PasswordAuthenticatedUserInterface
+    */
+    public function getPassword(): string
+    {
+        return $this->mdpUtilisateur;
+    }
+
+    public function setPasswordHasherName(): ?string
+    {
+        return null;
+    }
+
+    public function getPasswordHasherName(): ?string
+    {
+        return null;
+    }
+    public function __toString()
     {
         return $this->idUtilisateur;
     }
 
-    public function getPseudoUtilisateur(): ?string
+
+
+
+    
+    
+
+    /**
+     * Get the value of idUtilisateur
+     *
+     * @return  int
+     */ 
+    public function getIdUtilisateur()
+    {
+        return $this->idUtilisateur;
+    }
+
+    /**
+     * Set the value of idUtilisateur
+     *
+     * @param  int  $idUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setIdUtilisateur(int $idUtilisateur)
+    {
+        $this->idUtilisateur = $idUtilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pseudoUtilisateur
+     *
+     * @return  string
+     */ 
+    public function getPseudoUtilisateur()
     {
         return $this->pseudoUtilisateur;
     }
 
-    public function setPseudoUtilisateur(string $pseudoUtilisateur): self
+    /**
+     * Set the value of pseudoUtilisateur
+     *
+     * @param  string  $pseudoUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setPseudoUtilisateur(string $pseudoUtilisateur)
     {
         $this->pseudoUtilisateur = $pseudoUtilisateur;
 
         return $this;
     }
 
-    public function getNomUtilisateur(): ?string
+    /**
+     * Get the value of nomUtilisateur
+     *
+     * @return  string
+     */ 
+    public function getNomUtilisateur()
     {
         return $this->nomUtilisateur;
     }
 
-    public function setNomUtilisateur(string $nomUtilisateur): self
+    /**
+     * Set the value of nomUtilisateur
+     *
+     * @param  string  $nomUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setNomUtilisateur(string $nomUtilisateur)
     {
         $this->nomUtilisateur = $nomUtilisateur;
 
         return $this;
     }
 
-    public function getPrenomUtilisateur(): ?string
-    {
-        return $this->prenomUtilisateur;
-    }
-
-    public function setPrenomUtilisateur(string $prenomUtilisateur): self
-    {
-        $this->prenomUtilisateur = $prenomUtilisateur;
-
-        return $this;
-    }
-
-    public function getDateNaissance(): ?\DateTimeInterface
+    /**
+     * Get the value of dateNaissance
+     *
+     * @return  DateTime|null
+     */ 
+    public function getDateNaissance()
     {
         return $this->dateNaissance;
     }
 
-    public function setDateNaissance(?\DateTimeInterface $dateNaissance): self
+    /**
+     * Set the value of dateNaissance
+     *
+     * @param  DateTime|null  $dateNaissance
+     *
+     * @return  self
+     */ 
+    public function setDateNaissance($dateNaissance)
     {
         $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
 
-    public function getGenre(): ?string
+    /**
+     * Get the value of genre
+     *
+     * @return  string|null
+     */ 
+    public function getGenre()
     {
         return $this->genre;
     }
 
-    public function setGenre(?string $genre): self
+    /**
+     * Set the value of genre
+     *
+     * @param  string|null  $genre
+     *
+     * @return  self
+     */ 
+    public function setGenre($genre)
     {
         $this->genre = $genre;
 
         return $this;
     }
 
-    public function getPhotoUtilisateur(): ?string
+    /**
+     * Get the value of photoUtilisateur
+     *
+     * @return  string|null
+     */ 
+    public function getPhotoUtilisateur()
     {
         return $this->photoUtilisateur;
     }
 
-    public function setPhotoUtilisateur(?string $photoUtilisateur): self
+    /**
+     * Set the value of photoUtilisateur
+     *
+     * @param  string|null  $photoUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setPhotoUtilisateur($photoUtilisateur)
     {
         $this->photoUtilisateur = $photoUtilisateur;
 
         return $this;
     }
 
-    public function getMdpUtilisateur(): ?string
+    /**
+     * Get the value of mdpUtilisateur
+     *
+     * @return  string
+     */ 
+    public function getMdpUtilisateur()
     {
         return $this->mdpUtilisateur;
     }
 
-    public function setMdpUtilisateur(string $mdpUtilisateur): self
+    /**
+     * Set the value of mdpUtilisateur
+     *
+     * @param  string  $mdpUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setMdpUtilisateur(string $mdpUtilisateur)
     {
         $this->mdpUtilisateur = $mdpUtilisateur;
 
         return $this;
     }
 
-    public function getMailUtilisateur(): ?string
+    /**
+     * Get the value of mailUtilisateur
+     *
+     * @return  string
+     */ 
+    public function getMailUtilisateur()
     {
         return $this->mailUtilisateur;
     }
 
+<<<<<<< Updated upstream
     public function setMailUtilisateur(string $mailUtilisateur): self
+=======
+    /**
+     * Set the value of mailUtilisateur
+     *
+     * @param  string  $mailUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setMailUtilisateur(string $mailUtilisateur)
+>>>>>>> Stashed changes
     {
         $this->mailUtilisateur = $mailUtilisateur;
 
         return $this;
     }
 
+<<<<<<< Updated upstream
     public function getRoleUtilisateur(): ?string
     {
         return $this->roleUtilisateur;
@@ -276,16 +452,30 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     }
 
     public function getResetToken(): ?string
+=======
+
+    /**
+     * Get the value of resetToken
+     *
+     * @return  string
+     */ 
+    public function getResetToken()
+>>>>>>> Stashed changes
     {
         return $this->resetToken;
     }
-    
-    public function setResetToken(?string $resetToken): self
+
+    /**
+     * Set the value of resetToken
+     *
+     * @param  string  $resetToken
+     *
+     * @return  self
+     */ 
+    public function setResetToken(string $resetToken)
     {
         $this->resetToken = $resetToken;
-    
+
         return $this;
     }
-
-    
 }
