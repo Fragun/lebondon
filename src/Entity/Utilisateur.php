@@ -2,13 +2,9 @@
 
 namespace App\Entity;
 
-<<<<<<< Updated upstream
-=======
-
-use App\Entity\Utilisateur;
->>>>>>> Stashed changes
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherAwareInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -52,9 +48,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     private $prenomUtilisateur;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
-     * @ORM\Column(name="DATE_NAISSANCE", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DATE_NAISSANCE", type="datetime", nullable=true, options={"default"="NULL"})
      */
     private $dateNaissance = 'NULL';
 
