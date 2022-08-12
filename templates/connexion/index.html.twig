@@ -19,10 +19,6 @@
 											<label class="mb-1">Adresse mail</label>
 											<input type="email" class="form-control rounded" name="_username" id="floatingInput" placeholder="Saisissez votre adresse mail">
 
-											<label class="mb-1">Pseudo</label>
-											<input type="text" class="form-control rounded" name="_username" id="floatingInput" placeholder="Saisissez votre pseudo">
-
-										</div>
 										
 										<div class="form-group">
 											<label class="mb-1">Mot de passe</label>
@@ -61,10 +57,7 @@
 										</div>
 										
 
-											<input type="hidden" name="_target_path" value="{{path('app_dashboard')}}" />
-											<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
-											<button type="submit" class="btn btn-md full-width theme-bg text-light rounded ft-medium">Connecter</button>
-										</div>
+											
 
 										<div class="form-group text-center mt-4 mb-0">
 											<p class="mb-0">Vous n'avez pas encore de compte ? <a href="{{ path('app_inscription') }}" class="ft-medium text-success">S'inscrire</a></p>
@@ -89,5 +82,5 @@
 {% for message1 in app.flashes('message1') %}
 {{ message1|raw }}
 {% endfor %}	
->>>>>>> Stashed changes
+
 {% endblock %}
