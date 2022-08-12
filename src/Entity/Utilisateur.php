@@ -2,10 +2,8 @@
 
 namespace App\Entity;
 
-<<<<<<< HEAD
+
 use App\Entity\Utilisateur;
-=======
->>>>>>> 814f60e7cdd9b241b80acf79836f15e534026ce0
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -171,8 +169,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
         return $this->idUtilisateur;
     }
 
-<<<<<<< HEAD
-=======
+
 
 
 
@@ -196,7 +193,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      *
      * @return  self
      */ 
->>>>>>> 814f60e7cdd9b241b80acf79836f15e534026ce0
+
     public function setIdUtilisateur(int $idUtilisateur)
     {
         $this->idUtilisateur = $idUtilisateur;
@@ -204,16 +201,17 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
         return $this;
     }
 
-<<<<<<< HEAD
-    public function getPseudoUtilisateur(): ?string
-=======
+
+
+
     /**
      * Get the value of pseudoUtilisateur
      *
      * @return  string
      */ 
-    public function getPseudoUtilisateur()
->>>>>>> 814f60e7cdd9b241b80acf79836f15e534026ce0
+
+    public function getPseudoUtilisateur(): ?string
+
     {
         return $this->pseudoUtilisateur;
     }
@@ -362,9 +360,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
         return $this->mailUtilisateur;
     }
 
-<<<<<<< Updated upstream
-    public function setMailUtilisateur(string $mailUtilisateur): self
-=======
+
+    
+
     /**
      * Set the value of mailUtilisateur
      *
@@ -372,79 +370,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      *
      * @return  self
      */ 
-    public function setMailUtilisateur(string $mailUtilisateur)
->>>>>>> Stashed changes
+    public function setMailUtilisateur(string $mailUtilisateur): self
+
     {
         $this->mailUtilisateur = $mailUtilisateur;
 
         return $this;
     }
-
-<<<<<<< Updated upstream
-    public function getRoleUtilisateur(): ?string
-    {
-        return $this->roleUtilisateur;
-    }
-
-    public function setRoleUtilisateur(string $roleUtilisateur): self
-    {
-        $this->roleUtilisateur = $roleUtilisateur;
-
-        return $this;
-    }
-
-    /* The public representation of the user (e.g. a username, an email address, etc.)
-    *
-    * @see UserInterface
-    */
-   public function getUserIdentifier(): string
-   {
-       return (string) $this->mailUtilisateur;
-   }
-
-   /* @see UserInterface
-    */
-   public function getRoles(): array
-   {
-       $roles[] = $this->roleUtilisateur;
-       return array_unique($roles);
-   }
-
-   /*
-    * @see UserInterface
-    */
-   public function getSalt(): ?string
-   {
-       return null;
-   }
-
-   /* @see UserInterface
-    */
-   public function eraseCredentials()
-   {
-   }
-
-   /**
-    * @see PasswordAuthenticatedUserInterface
-    */
-   public function getPassword(): string
-   {
-       return $this->mdpUtilisateur;
-   }
-
-   public function setPasswordHasherName(): ?string
-   {
-       return null;
-   }
-
-   public function getPasswordHasherName(): ?string
-   {
-       return null;
-   }
-   public function __toString()
-   {
-       return $this->idUtilisateur;
-   }
 
    public function getIsVerified(): ?bool
     {
@@ -458,16 +390,15 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
         return $this;
     }
 
-    public function getResetToken(): ?string
-=======
+
 
     /**
      * Get the value of resetToken
      *
      * @return  string
      */ 
-    public function getResetToken()
->>>>>>> Stashed changes
+    public function getResetToken(): ?string
+
     {
         return $this->resetToken;
     }
@@ -485,12 +416,5 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
 
         return $this;
     }
-<<<<<<< HEAD
 
-    
-
-
-    
-=======
->>>>>>> 814f60e7cdd9b241b80acf79836f15e534026ce0
 }
