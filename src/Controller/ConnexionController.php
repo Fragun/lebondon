@@ -129,5 +129,4 @@ class ConnexionController extends AbstractController
 
     }
 
-
 }

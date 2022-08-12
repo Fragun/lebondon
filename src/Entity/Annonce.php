@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Annonce
  *
- * @ORM\Table(name="annonce", indexes={@ORM\Index(name="ANNONCE_UTILISATEUR0_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="ANNONCE_SOUS_CATEGORIE1_FK", columns={"ID_SOUS_CATEGORIE"}), @ORM\Index(name="ANNONCE_VILLE2_FK", columns={"ID_VILLE"}), @ORM\Index(name="ANNONCE_ETAT_OBJET_FK", columns={"ID_ETAT"})})
+ * @ORM\Table(name="annonce", indexes={@ORM\Index(name="ANNONCE_ETAT_OBJET_FK", columns={"ID_ETAT"}), @ORM\Index(name="ANNONCE_UTILISATEUR0_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="ANNONCE_SOUS_CATEGORIE1_FK", columns={"ID_SOUS_CATEGORIE"}), @ORM\Index(name="ANNONCE_VILLE2_FK", columns={"ID_VILLE"})})
  * @ORM\Entity
  */
 class Annonce
@@ -45,9 +45,9 @@ class Annonce
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="datetime", nullable=false)
+     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="date", nullable=false)
      */
-    private $dateCreation;
+    private $dateCreationAnnonce;
 
     /**
      * @var \SousCategorie
@@ -71,14 +71,13 @@ class Annonce
 
     /**
      * @var \EtatObjet
-
      *
-     * @ORM\ManyToMany(targetEntity="EtatObjet", mappedBy="idAnnonce")
+     * @ORM\ManyToOne(targetEntity="EtatObjet")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_ETAT", referencedColumnName="ID_ETAT")
+     * })
      */
     private $idEtat;
-
-
-
 
     /**
      * @var \Utilisateur

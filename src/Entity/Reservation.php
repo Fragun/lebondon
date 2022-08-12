@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reservation
  *
- * @ORM\Table(name="reservation", uniqueConstraints={@ORM\UniqueConstraint(name="RESERVATION_EVALUATION_AK", columns={"ID_EVALUATION"})}, indexes={@ORM\Index(name="RESERVATION_UTILISATEUR2_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="RESERVATION_DISPONIBILITE_OBJET_FK", columns={"ID_DISPONIBILITE"}), @ORM\Index(name="RESERVATION_ANNONCE1_FK", columns={"ID_ANNONCE"})})
+ * @ORM\Table(name="reservation", uniqueConstraints={@ORM\UniqueConstraint(name="RESERVATION_EVALUATION_AK", columns={"ID_EVALUATION"})}, indexes={@ORM\Index(name="RESERVATION_DISPONIBILITE_OBJET_FK", columns={"ID_DISPONIBILITE"}), @ORM\Index(name="RESERVATION_ANNONCE1_FK", columns={"ID_ANNONCE"}), @ORM\Index(name="RESERVATION_UTILISATEUR2_FK", columns={"ID_UTILISATEUR"})})
  * @ORM\Entity
  */
 class Reservation
@@ -34,6 +34,16 @@ class Reservation
      * @ORM\Column(name="DATE_ENLEVEMENT", type="date", nullable=false)
      */
     private $dateEnlevement;
+
+    /**
+     * @var \Evaluation
+     *
+     * @ORM\ManyToOne(targetEntity="Evaluation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_EVALUATION", referencedColumnName="ID_EVALUATION")
+     * })
+     */
+    private $idEvaluation;
 
     /**
      * @var \DisponibiliteObjet
@@ -64,16 +74,6 @@ class Reservation
      * })
      */
     private $idAnnonce;
-
-    /**
-     * @var \Evaluation
-     *
-     * @ORM\ManyToOne(targetEntity="Evaluation")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_EVALUATION", referencedColumnName="ID_EVALUATION")
-     * })
-     */
-    private $idEvaluation;
 
 
 }

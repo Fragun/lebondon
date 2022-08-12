@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-
+use App\Entity\Utilisateur;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -102,6 +102,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     public function getIdUtilisateur(): ?int
     {
         return $this->idUtilisateur;
+    }
+
+    public function setIdUtilisateur(int $idUtilisateur)
+    {
+        $this->idUtilisateur = $idUtilisateur;
+
+        return $this;
     }
 
     public function getPseudoUtilisateur(): ?string
@@ -288,6 +295,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     
         return $this;
     }
+
+    
+
 
     
 }
