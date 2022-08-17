@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Image
  *
  * @ORM\Table(name="image", indexes={@ORM\Index(name="IMAGE_ANNONCE_FK", columns={"ID_ANNONCE"})})
- * @ORM\Entity(repositoryClass= "App\Repository\ImageRepository")
+ * @ORM\Entity
  */
 class Image
 {
@@ -37,35 +37,6 @@ class Image
      * })
      */
     private $idAnnonce;
-
-    public function getIdImage(): ?int
-    {
-        return $this->idImage;
-    }
-
-    public function getNomImage(): ?string
-    {
-        return $this->nomImage;
-    }
-
-    public function setNomImage(string $nomImage): self
-    {
-        $this->nomImage = $nomImage;
-
-        return $this;
-    }
-
-    public function getIdAnnonce(): ?Annonce
-    {
-        return $this->idAnnonce;
-    }
-
-    public function setIdAnnonce(?Annonce $idAnnonce): self
-    {
-        $this->idAnnonce = $idAnnonce;
-
-        return $this;
-    }
 
 
 }

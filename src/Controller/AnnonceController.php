@@ -18,10 +18,10 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class AnnonceController extends AbstractController
 {
-    #[Route('/ajouter-annonce', name: 'app_annonce')]
-    public function ajouterAnnonce(Request $request,EntityManagerInterface $manager, TokenStorageInterface $tokenStorage): Response
+    #[Route('dashboard/annonce', name: 'app_annonce')]
+    public function ajouterAnnonce(Request $request,EntityManagerInterface $manager, UserInterface $utilisateur): Response
     {
-        //$utilisateur->getIdUtilisateur();  mettre UserInterface $utilisateur, en parametre
+        //$utilisateur->getIdUtilisateur();  //mettre UserInterface $utilisateur, en parametre
         $annonce = new Annonce();
         
         $form_annonce= $this->createForm (AnnonceType::class, $annonce);
@@ -34,11 +34,11 @@ class AnnonceController extends AbstractController
             $slugify = new Slugify();
             $slug = $slugify->slugify($annonce->getTitreAnnonce()); 
             $annonce->setSlugAnnonce($slug);
-            
-            $annonce->setIdUtilisateur($utilisateur);
+           // dd($utilisateur->getIdUtilisateur());
+            $annonce->setIdUtilisateur();
             //dd($form_annonce);
             $annonce->setDateCreation(new DateTime());
-// On récupère les images transmises
+            // On récupère les images transmises
             $images = $form_annonce->get('images')->getData();
             $manager->persist($annonce);
             // On boucle sur les images

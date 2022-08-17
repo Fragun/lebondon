@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ville
  *
  * @ORM\Table(name="ville", indexes={@ORM\Index(name="VILLE_DEPARTEMENT_FK", columns={"ID_DEPARTEMENT"})})
- * @ORM\Entity(repositoryClass= "App\Repository\VilleRepository")
+ * @ORM\Entity
  */
 class Ville
 {
@@ -67,47 +67,6 @@ class Ville
      * })
      */
     private $idDepartement;
-
-    public function getIdVille(): ?int
-    {
-        return $this->idVille;
-    }
-
-    public function getNomVille(): ?string
-    {
-        return $this->nomVille;
-    }
-
-    public function setNomVille(string $nomVille): self
-    {
-        $this->nomVille = $nomVille;
-
-        return $this;
-    }
-
-    public function getCodePostal(): ?string
-    {
-        return $this->codePostal;
-    }
-
-    public function setCodePostal(string $codePostal): self
-    {
-        $this->codePostal = $codePostal;
-
-        return $this;
-    }
-
-    public function getIdDepartement(): ?Departement
-    {
-        return $this->idDepartement;
-    }
-
-    public function setIdDepartement(?Departement $idDepartement): self
-    {
-        $this->idDepartement = $idDepartement;
-
-        return $this;
-    }
 
 
 

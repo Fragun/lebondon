@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Conversation
  *
  * @ORM\Table(name="conversation", indexes={@ORM\Index(name="CONVERSATION_UTILISATEUR_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="CONVERSATION_ANNONCE0_FK", columns={"ID_ANNONCE"})})
- * @ORM\Entity(repositoryClass= "App\Repository\ConversationRepository")
+ * @ORM\Entity
  */
 class Conversation
 {
@@ -48,47 +47,6 @@ class Conversation
      * })
      */
     private $idAnnonce;
-
-    public function getIdConversation(): ?int
-    {
-        return $this->idConversation;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    public function getIdUtilisateur(): ?Utilisateur
-    {
-        return $this->idUtilisateur;
-    }
-
-    public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
-    {
-        $this->idUtilisateur = $idUtilisateur;
-
-        return $this;
-    }
-
-    public function getIdAnnonce(): ?Annonce
-    {
-        return $this->idAnnonce;
-    }
-
-    public function setIdAnnonce(?Annonce $idAnnonce): self
-    {
-        $this->idAnnonce = $idAnnonce;
-
-        return $this;
-    }
 
 
 }

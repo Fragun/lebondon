@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EtatObjet
  *
  * @ORM\Table(name="etat_objet")
- * @ORM\Entity(repositoryClass= "App\Repository\EtatObjetRepository")
+ * @ORM\Entity
  */
 class EtatObjet
 {
@@ -30,6 +30,7 @@ class EtatObjet
     private $nomEtat;
 
 
+
     public function getIdEtat(): ?int
     {
         return $this->idEtat;
@@ -46,6 +47,7 @@ class EtatObjet
 
         return $this;
     }
+
 
 
 }

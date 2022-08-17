@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+
+use App\Entity\Utilisateur;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherAwareInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -47,9 +50,9 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     private $prenomUtilisateur;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
-     * @ORM\Column(name="DATE_NAISSANCE", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DATE_NAISSANCE", type="datetime", nullable=true, options={"default"="NULL"})
      */
     private $dateNaissance = 'NULL';
 
@@ -88,106 +91,17 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
      */
     private $roleUtilisateur;
 
-    public function getIdUtilisateur(): ?int
-    {
-        return $this->idUtilisateur;
-    }
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="RESET_TOKEN", type="string", length=50, nullable=false)
+     */
+    private $resetToken;
 
-    public function getPseudoUtilisateur(): ?string
-    {
-        return $this->pseudoUtilisateur;
-    }
 
-    public function setPseudoUtilisateur(string $pseudoUtilisateur): self
-    {
-        $this->pseudoUtilisateur = $pseudoUtilisateur;
 
-        return $this;
-    }
 
-    public function getNomUtilisateur(): ?string
-    {
-        return $this->nomUtilisateur;
-    }
 
-    public function setNomUtilisateur(string $nomUtilisateur): self
-    {
-        $this->nomUtilisateur = $nomUtilisateur;
-
-        return $this;
-    }
-
-    public function getPrenomUtilisateur(): ?string
-    {
-        return $this->prenomUtilisateur;
-    }
-
-    public function setPrenomUtilisateur(string $prenomUtilisateur): self
-    {
-        $this->prenomUtilisateur = $prenomUtilisateur;
-
-        return $this;
-    }
-
-    public function getDateNaissance(): ?\DateTimeInterface
-    {
-        return $this->dateNaissance;
-    }
-
-    public function setDateNaissance(?\DateTimeInterface $dateNaissance): self
-    {
-        $this->dateNaissance = $dateNaissance;
-
-        return $this;
-    }
-
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(?string $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
-    public function getPhotoUtilisateur(): ?string
-    {
-        return $this->photoUtilisateur;
-    }
-
-    public function setPhotoUtilisateur(?string $photoUtilisateur): self
-    {
-        $this->photoUtilisateur = $photoUtilisateur;
-
-        return $this;
-    }
-
-    public function getMdpUtilisateur(): ?string
-    {
-        return $this->mdpUtilisateur;
-    }
-
-    public function setMdpUtilisateur(string $mdpUtilisateur): self
-    {
-        $this->mdpUtilisateur = $mdpUtilisateur;
-
-        return $this;
-    }
-
-    public function getMailUtilisateur(): ?string
-    {
-        return $this->mailUtilisateur;
-    }
-
-    public function setMailUtilisateur(string $mailUtilisateur): self
-    {
-        $this->mailUtilisateur = $mailUtilisateur;
-
-        return $this;
-    }
 
     public function getRoleUtilisateur(): ?string
     {
@@ -205,48 +119,302 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface, 
     *
     * @see UserInterface
     */
-   public function getUserIdentifier(): string
-   {
-       return (string) $this->mailUtilisateur;
-   }
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->mailUtilisateur;
+    }
 
-   /* @see UserInterface
+    /* @see UserInterface
     */
-   public function getRoles(): array
-   {
-       $roles[] = $this->roleUtilisateur;
-       return array_unique($roles);
-   }
+    public function getRoles(): array
+    {
+        $roles[] = $this->roleUtilisateur;
+        return array_unique($roles);
+    }
 
-   /*
+    /*
     * @see UserInterface
     */
-   public function getSalt(): ?string
-   {
-       return null;
-   }
+    public function getSalt(): ?string
+    {
+        return null;
+    }
 
-   /* @see UserInterface
+    /* @see UserInterface
     */
-   public function eraseCredentials()
-   {
-   }
+    public function eraseCredentials()
+    {
+    }
 
-   /**
+
+    /**
     * @see PasswordAuthenticatedUserInterface
     */
-   public function getPassword(): string
-   {
-       return $this->mdpUtilisateur;
-   }
+    public function getPassword(): string
+    {
+        return $this->mdpUtilisateur;
+    }
 
-   public function getPasswordHasherName(): ?string
-   {
-       return null;
-   }
-   public function __toString()
-   {
-       return $this->idUtilisateur;
-   }
+    public function setPasswordHasherName(): ?string
+    {
+        return null;
+    }
+
+    public function getPasswordHasherName(): ?string
+    {
+        return null;
+    }
+    public function __toString()
+    {
+        return $this->idUtilisateur;
+    }
+
+
+
+
+
+    
+    
+
+    /**
+     * Get the value of idUtilisateur
+     *
+     * @return  int
+     */ 
+    public function getIdUtilisateur()
+    {
+        return $this->idUtilisateur;
+    }
+
+    /**
+     * Set the value of idUtilisateur
+     *
+     * @param  int  $idUtilisateur
+     *
+     * @return  self
+     */ 
+
+    public function setIdUtilisateur(int $idUtilisateur)
+    {
+        $this->idUtilisateur = $idUtilisateur;
+
+        return $this;
+    }
+
+
+
+
+    /**
+     * Get the value of pseudoUtilisateur
+     *
+     * @return  string
+     */ 
+
+    public function getPseudoUtilisateur(): ?string
+
+    {
+        return $this->pseudoUtilisateur;
+    }
+
+    /**
+     * Set the value of pseudoUtilisateur
+     *
+     * @param  string  $pseudoUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setPseudoUtilisateur(string $pseudoUtilisateur)
+    {
+        $this->pseudoUtilisateur = $pseudoUtilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nomUtilisateur
+     *
+     * @return  string
+     */ 
+    public function getNomUtilisateur()
+    {
+        return $this->nomUtilisateur;
+    }
+
+    /**
+     * Set the value of nomUtilisateur
+     *
+     * @param  string  $nomUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setNomUtilisateur(string $nomUtilisateur)
+    {
+        $this->nomUtilisateur = $nomUtilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateNaissance
+     *
+     * @return  DateTime|null
+     */ 
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * Set the value of dateNaissance
+     *
+     * @param  DateTime|null  $dateNaissance
+     *
+     * @return  self
+     */ 
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of genre
+     *
+     * @return  string|null
+     */ 
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Set the value of genre
+     *
+     * @param  string|null  $genre
+     *
+     * @return  self
+     */ 
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of photoUtilisateur
+     *
+     * @return  string|null
+     */ 
+    public function getPhotoUtilisateur()
+    {
+        return $this->photoUtilisateur;
+    }
+
+    /**
+     * Set the value of photoUtilisateur
+     *
+     * @param  string|null  $photoUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setPhotoUtilisateur($photoUtilisateur)
+    {
+        $this->photoUtilisateur = $photoUtilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of mdpUtilisateur
+     *
+     * @return  string
+     */ 
+    public function getMdpUtilisateur()
+    {
+        return $this->mdpUtilisateur;
+    }
+
+    /**
+     * Set the value of mdpUtilisateur
+     *
+     * @param  string  $mdpUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setMdpUtilisateur(string $mdpUtilisateur)
+    {
+        $this->mdpUtilisateur = $mdpUtilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of mailUtilisateur
+     *
+     * @return  string
+     */ 
+    public function getMailUtilisateur()
+    {
+        return $this->mailUtilisateur;
+    }
+
+
+    
+
+    /**
+     * Set the value of mailUtilisateur
+     *
+     * @param  string  $mailUtilisateur
+     *
+     * @return  self
+     */ 
+    public function setMailUtilisateur(string $mailUtilisateur): self
+
+    {
+        $this->mailUtilisateur = $mailUtilisateur;
+
+        return $this;
+    }
+
+   public function getIsVerified(): ?bool
+    {
+        return $this->is_verified;
+    }
+
+    public function setIsVerified(bool $is_verified): self
+    {
+        $this->is_verified = $is_verified;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Get the value of resetToken
+     *
+     * @return  string
+     */ 
+    public function getResetToken(): ?string
+
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * Set the value of resetToken
+     *
+     * @param  string  $resetToken
+     *
+     * @return  self
+     */ 
+    public function setResetToken(string $resetToken)
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
 
 }

@@ -6,21 +6,19 @@
 			<!-- ======================= Login Detail ======================== -->
 			<section class="gray">
 				<div class="container">
-				<form method="post" action="{{path('app_connexion') }}">
-					<div class="row align-items-start justify-content-center">
-						<div class="col-xl-5 col-lg-8 col-md-12">
+					<form method="post" action="{{path('app_connexion')}}">
+						<div class="row align-items-start justify-content-center">
+							<div class="col-xl-5 col-lg-8 col-md-12">
 							
-							<div class="signup-screen-wrap">
-								<div class="signup-screen-single">
-									<div class="text-center mb-4">
+								<div class="signup-screen-wrap">
+									<div class="signup-screen-single">
+										<div class="text-center mb-4">
 										<h4 class="m-0 ft-medium">Connectez-vous</h4>
-									</div>
-									
-											
+										</div>
 										<div class="form-group">
 											<label class="mb-1">Adresse mail</label>
-											<input type="text" class="form-control rounded" name="_username" id="floatingInput" placeholder="Saisissez votre mail">
-										</div>
+											<input type="email" class="form-control rounded" name="_username" id="floatingInput" placeholder="Saisissez votre adresse mail">
+
 										
 										<div class="form-group">
 											<label class="mb-1">Mot de passe</label>
@@ -34,14 +32,19 @@
 													<label for="dd" class="checkbox-custom-label">Se souvenir de moi</label>
 												</div>	
 												<div class="eltio_k2">
-													<a href="#" class="theme-cl">Mot de passe oublié ?</a>
+													<a href="{{ path('forgotten_password') }}" class="theme-cl">Mot de passe oublié ?</a>
 												</div>	
 											</div>
 										</div>
 										
 										<div class="form-group">
+
 											<input type="hidden" name="_target_path" value="{{path('app_dashboard')}}" />
+											<input type="hidden" name="_csrf_token" value="{{csrf_token('authenticate')}}" >
+
+											<input type="hidden" name="_target_path" value="{{path('app_annonce')}}" />
 											<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
 											<button type="submit" class="btn btn-md full-width theme-bg text-light rounded ft-medium">Connecter</button>
 										</div>
 										
@@ -53,11 +56,13 @@
 											</div>
 										</div>
 										
+
+											
+
 										<div class="form-group text-center mt-4 mb-0">
-											<p class="mb-0">Vous n'avez pas encore de compte ? <a href="signup.html" class="ft-medium text-success">S'inscrire</a></p>
+											<p class="mb-0">Vous n'avez pas encore de compte ? <a href="{{ path('app_inscription') }}" class="ft-medium text-success">S'inscrire</a></p>
 										</div>
-										
-									</form>
+									
 								</div>
 							</div>
 							
@@ -68,5 +73,14 @@
 			</section>
 			<!-- ======================= Login End ======================== -->
 
+			
+
+
 		</body>
+	</body>
+</html>
+{% for message1 in app.flashes('message1') %}
+{{ message1|raw }}
+{% endfor %}	
+
 {% endblock %}

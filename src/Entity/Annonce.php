@@ -2,17 +2,13 @@
 
 namespace App\Entity;
 
-use App\Entity\SousCategorie;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Annonce
  *
- * @ORM\Table(name="annonce", indexes={@ORM\Index(name="ANNONCE_VILLE2_FK", columns={"ID_VILLE"}), @ORM\Index(name="ANNONCE_ETAT_OBJET_FK", columns={"ID_ETAT"}), @ORM\Index(name="ANNONCE_UTILISATEUR0_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="ANNONCE_SOUS_CATEGORIE1_FK", columns={"ID_SOUS_CATEGORIE"})})
- * @ORM\Entity(repositoryClass= "App\Repository\AnnonceRepository")
+ * @ORM\Table(name="annonce", indexes={@ORM\Index(name="ANNONCE_ETAT_OBJET_FK", columns={"ID_ETAT"}), @ORM\Index(name="ANNONCE_UTILISATEUR0_FK", columns={"ID_UTILISATEUR"}), @ORM\Index(name="ANNONCE_SOUS_CATEGORIE1_FK", columns={"ID_SOUS_CATEGORIE"}), @ORM\Index(name="ANNONCE_VILLE2_FK", columns={"ID_VILLE"})})
+ * @ORM\Entity
  */
 class Annonce
 {
@@ -32,13 +28,6 @@ class Annonce
      */
     private $titreAnnonce;
 
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="SLUG_ANNONCE", type="string", length=150, nullable=false)
-     */
-    private $slugAnnonce;
-
     /**
      * @var string
      *
@@ -56,19 +45,19 @@ class Annonce
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="DATE_CREATION", type="datetime", nullable=false)
+     * @ORM\Column(name="DATE_CREATION_ANNONCE", type="date", nullable=false)
      */
-    private $dateCreation;
+    private $dateCreationAnnonce;
 
     /**
-
-     * @var \Utilisateur
+     * @var \SousCategorie
      *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\ManyToOne(targetEntity="SousCategorie")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR")
+     *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
      * })
      */
+
     private $idUtilisateur;
 
     /**
@@ -79,6 +68,7 @@ class Annonce
      *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
      * })
      */
+
     private $idSousCategorie;
 
     /**
@@ -100,6 +90,7 @@ class Annonce
      * })
      */
     private $idEtat;
+
 
 
     public function getIdAnnonce(): ?int
@@ -235,6 +226,16 @@ class Annonce
 
         return $this;
     }
+
+    /**
+     * @var \Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR")
+     * })
+     */
+    private $idUtilisateur;
 
 
 
