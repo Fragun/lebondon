@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * EtatObjet
@@ -40,7 +40,7 @@ class EtatObjet
         return $this->nomEtat;
     }
 
-    public function setNomEtat(string $nomEtat): self
+    public function setNomEtat(?string $nomEtat): self
     {
         $this->nomEtat = $nomEtat;
 

@@ -73,9 +73,11 @@ class Annonce
 
     /**
      * @var \SousCategorie
-
      *
-     * @ORM\ManyToMany(targetEntity="SousCategorie", mappedBy="idAnnonce")
+     * @ORM\ManyToOne(targetEntity="SousCategorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
+     * })
      */
     private $idSousCategorie;
 
@@ -91,23 +93,14 @@ class Annonce
 
     /**
      * @var \EtatObjet
-
      *
-     * @ORM\ManyToMany(targetEntity="EtatObjet", mappedBy="idAnnonce")
+     * @ORM\ManyToOne(targetEntity="EtatObjet")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_ETAT", referencedColumnName="ID_ETAT")
+     * })
      */
     private $idEtat;
 
-
-
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idSousCategorie = new ArrayCollection();
-        $this->idEtat = new ArrayCollection(); 
-    }
 
     public function getIdAnnonce(): ?int
     {
@@ -197,23 +190,33 @@ class Annonce
 
         return $this;
     }
-
-         /**
-     * @return Collection<int, EtatObjet>
-     */
-    public function getIdEtat(): Collection
+    /**
+     * Get the value of idEtat
+     *
+     * @return  \EtatObjet
+     */ 
+    public function getIdEtat()
     {
         return $this->idEtat;
     }
 
-     /**
-     * @return Collection<int, Categorie>
-     */
-    public function getIdSousCategorie(): Collection
+    /**
+     * Set the value of idEtat
+     *
+     * @param  \EtatObjet  $idEtat
+     *
+     * @return  self
+     */ 
+    public function setIdEtat(?EtatObjet $idEtat)
     {
-        return $this->idSousCategorie;
+        $this->idEtat = $idEtat;
+
+        return $this;
     }
 
+
+
+    
     public function addIdCategorie(SousCategorie $idSousCategorie): self
     {
         if (!$this->idSousCategorie->contains($idSousCategorie)) {
@@ -234,4 +237,30 @@ class Annonce
     }
 
 
+
+
+
+    /**
+     * Get the value of idSousCategorie
+     *
+     * @return  \SousCategorie
+     */ 
+    public function getIdSousCategorie()
+    {
+        return $this->idSousCategorie;
+    }
+
+    /**
+     * Set the value of idSousCategorie
+     *
+     * @param  \SousCategorie  $idSousCategorie
+     *
+     * @return  self
+     */ 
+    public function setIdSousCategorie(?SousCategorie $idSousCategorie)
+    {
+        $this->idSousCategorie = $idSousCategorie;
+
+        return $this;
+    }
 }
