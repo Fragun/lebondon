@@ -24,6 +24,13 @@ class Ville
     /**
      * @var string
      *
+     * @ORM\Column(name="CODE_POSTAL", type="string", length=5, nullable=false, options={"fixed"=true})
+     */
+    private $codePostal;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="NOM_VILLE", type="string", length=100, nullable=false)
      */
     private $nomVille;
@@ -31,9 +38,25 @@ class Ville
     /**
      * @var string
      *
-     * @ORM\Column(name="CODE_POSTAL", type="string", length=5, nullable=false, options={"fixed"=true})
+     * @ORM\Column(name="SLUG_VILLE", type="string", length=150, nullable=false)
      */
-    private $codePostal;
+    private $slugVille;
+
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="LATITUDE", type="decimal", nullable=false)
+     */
+    private $latitude;
+
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="LONGITUDE", type="decimal", nullable=false)
+     */
+    private $longitude;
+
+
 
     /**
      * @var \Departement
@@ -46,4 +69,76 @@ class Ville
     private $idDepartement;
 
 
+
+    /**
+     * Get the value of slugVille
+     *
+     * @return  string
+     */ 
+    public function getSlugVille()
+    {
+        return $this->slugVille;
+    }
+
+    /**
+     * Set the value of slugVille
+     *
+     * @param  string  $slugVille
+     *
+     * @return  self
+     */ 
+    public function setSlugVille(string $slugVille)
+    {
+        $this->slugVille = $slugVille;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of latitude
+     *
+     * @return  string
+     */ 
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set the value of latitude
+     *
+     * @param  string  $latitude
+     *
+     * @return  self
+     */ 
+    public function setLatitude(string $latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of longitude
+     *
+     * @return  string
+     */ 
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set the value of longitude
+     *
+     * @param  string  $longitude
+     *
+     * @return  self
+     */ 
+    public function setLongitude(string $longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
 }

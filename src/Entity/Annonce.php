@@ -57,6 +57,18 @@ class Annonce
      *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
      * })
      */
+
+    private $idUtilisateur;
+
+    /**
+     * @var \SousCategorie
+     *
+     * @ORM\ManyToOne(targetEntity="SousCategorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
+     * })
+     */
+
     private $idSousCategorie;
 
     /**
@@ -79,6 +91,142 @@ class Annonce
      */
     private $idEtat;
 
+
+
+    public function getIdAnnonce(): ?int
+    {
+        return $this->idAnnonce;
+    }
+
+    public function getTitreAnnonce(): ?string
+    {
+        return $this->titreAnnonce;
+    }
+
+    public function setTitreAnnonce(string $titreAnnonce): self
+    {
+        $this->titreAnnonce = $titreAnnonce;
+
+        return $this;
+    }
+
+    public function getSlugAnnonce(): ?string
+    {
+        return $this->slugAnnonce;
+    }
+
+    public function setSlugAnnonce(string $slugAnnonce): self
+    {
+        $this->slugAnnonce = $slugAnnonce;
+
+        return $this;
+    }
+
+    public function getDescriptionAnnonce(): ?string
+    {
+        return $this->descriptionAnnonce;
+    }
+
+    public function setDescriptionAnnonce(string $descriptionAnnonce): self
+    {
+        $this->descriptionAnnonce = $descriptionAnnonce;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    public function getIdVille(): ?Ville
+    {
+        return $this->idVille;
+    }
+
+    public function setIdVille(?Ville $idVille): self
+    {
+        $this->idVille = $idVille;
+
+        return $this;
+    }
+
+    public function getIdUtilisateur(): ?Utilisateur
+    {
+        return $this->idUtilisateur;
+    }
+
+    public function setIdUtilisateur(?Utilisateur $idUtilisateur): self
+    {
+        $this->idUtilisateur = $idUtilisateur;
+
+        return $this;
+    }
+    /**
+     * Get the value of idEtat
+     *
+     * @return  \EtatObjet
+     */ 
+    public function getIdEtat()
+    {
+        return $this->idEtat;
+    }
+
+    /**
+     * Set the value of idEtat
+     *
+     * @param  \EtatObjet  $idEtat
+     *
+     * @return  self
+     */ 
+    public function setIdEtat(?EtatObjet $idEtat)
+    {
+        $this->idEtat = $idEtat;
+
+        return $this;
+    }
+
+
+
+    
+    public function addIdCategorie(SousCategorie $idSousCategorie): self
+    {
+        if (!$this->idSousCategorie->contains($idSousCategorie)) {
+            $this->idSousCategorie[] = $idSousCategorie;
+            $idSousCategorie->addIdAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdSsousCategorie(SousCategorie $idSousCategorie): self
+    {
+        if ($this->idSousCategorie->removeElement($idSousCategorie)) {
+            $idSousCategorie->removeIdAnnonce($this);
+        }
+
+        return $this;
+    }
+
     /**
      * @var \Utilisateur
      *
@@ -90,4 +238,30 @@ class Annonce
     private $idUtilisateur;
 
 
+
+
+
+    /**
+     * Get the value of idSousCategorie
+     *
+     * @return  \SousCategorie
+     */ 
+    public function getIdSousCategorie()
+    {
+        return $this->idSousCategorie;
+    }
+
+    /**
+     * Set the value of idSousCategorie
+     *
+     * @param  \SousCategorie  $idSousCategorie
+     *
+     * @return  self
+     */ 
+    public function setIdSousCategorie(?SousCategorie $idSousCategorie)
+    {
+        $this->idSousCategorie = $idSousCategorie;
+
+        return $this;
+    }
 }

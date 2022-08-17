@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * EtatObjet
  *
@@ -27,6 +28,26 @@ class EtatObjet
      * @ORM\Column(name="NOM_ETAT", type="string", length=20, nullable=false)
      */
     private $nomEtat;
+
+
+
+    public function getIdEtat(): ?int
+    {
+        return $this->idEtat;
+    }
+
+    public function getNomEtat(): ?string
+    {
+        return $this->nomEtat;
+    }
+
+    public function setNomEtat(?string $nomEtat): self
+    {
+        $this->nomEtat = $nomEtat;
+
+        return $this;
+    }
+
 
 
 }

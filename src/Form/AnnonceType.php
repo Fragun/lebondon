@@ -10,7 +10,6 @@ use App\Entity\SousCategorie;
 use App\Repository\AnnonceRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\SousCategorieRepository;
-
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -54,7 +53,7 @@ class AnnonceType extends AbstractType
                 //'choices' => $this->userRepository->findAllOrderByAsc(),
                 'choice_label' => 'nomSousCategorie', 
                 // used to render a select box, check boxes or radios
-                'multiple' => true,
+                'multiple' => false,
                 // 'expanded' => true,
                 'label' => false,
                 'attr'=> ['class'=> 'form-select text-center mt-1'] ] )
@@ -84,9 +83,10 @@ class AnnonceType extends AbstractType
             ->add('idEtat', EntityType::class,[
                 'class' => EtatObjet::class,
                 'choice_label' => 'nomEtat', 
-                'multiple' => true,
                 'label' => false,
-                'attr'=> ['class'=> 'form-select text-center mt-1'] 
+                'multiple' => false,
+                'attr'=> ['class'=> 'form-select text-center mt-1'],
+                
                 ])
             //->add('idUtilisateur', HiddenType::class)
             ->add('save', SubmitType::class,['attr'=> ['class'=> 'btn btn-dark mt-3'], 'label' => 'Valider le don'])
