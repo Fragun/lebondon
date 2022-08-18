@@ -50,14 +50,13 @@ class Annonce
     private $dateCreationAnnonce;
 
     /**
-     * @var \SousCategorie
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="SousCategorie")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_SOUS_CATEGORIE", referencedColumnName="ID_SOUS_CATEGORIE")
+     *   @ORM\JoinColumn(name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR")
      * })
      */
-
     private $idUtilisateur;
 
     /**
@@ -226,19 +225,6 @@ class Annonce
 
         return $this;
     }
-
-    /**
-     * @var \Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR")
-     * })
-     */
-    private $idUtilisateur;
-
-
-
 
 
     /**
